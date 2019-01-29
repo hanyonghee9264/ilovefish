@@ -22,6 +22,7 @@ SECRET_KEY = secrets['SECRET_KEY']
 
 # Static
 STATIC_URL = '/static/'
+# collectstatic했을 때 파일이 모이는 곳
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
 
 # Media
