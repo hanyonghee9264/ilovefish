@@ -1,13 +1,11 @@
-FROM            ubuntu:18.04
+FROM            python:3.6.7-slim
 MAINTAINER      hanyonghee9264@gmail.com
+ENV             LANG                    C.UTF-8
 
 # 패키지 업그레이드, Python3설치
 RUN             apt -y update
 RUN             apt -y dist-upgrade
-RUN             apt -y install python3-pip
-
-# Nginx, uWSGI 설치 (Webserver, WSGI)
-RUN             apt -y install nginx supervisor
+RUN             apt -y install gcc nginx supervisor
 RUN             pip3 install uwsgi
 
 # requirements.txt파일만 복사 후, 패키지 설치
@@ -18,9 +16,6 @@ RUN             pip3 install -r     /tmp/requirements.txt
 # Image의 /srv/project/폴더 내부에 복사
 COPY            ./  /srv/project
 WORKDIR         /srv/project
-
-
-ENV             DJANGO_SETTINGS_MODULE  config.settings.production
 
 # 프로세스 실행할 명령
 WORKDIR         /srv/project/app
