@@ -5,8 +5,10 @@ ENV             LANG                    C.UTF-8
 # 패키지 업그레이드, Python3설치
 RUN             apt -y update
 RUN             apt -y dist-upgrade
-RUN             apt -y install gcc nginx supervisor
-RUN             pip3 install uwsgi
+RUN             apt -y install gcc nginx supervisor && \
+                pip3 install uwsgi && \
+                apt -y remove gcc && \
+                apt -y autoremove
 
 # requirements.txt파일만 복사 후, 패키지 설치
 # requirements.txt파일의 내용이 바뀌지 않으면 pip3 install ..부분이 재실행되지 않음
