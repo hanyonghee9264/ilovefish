@@ -6,11 +6,7 @@ WSGI_APPLICATION = 'config.wsgi.dev.application'
 
 secrets = json.load(open(os.path.join(SECRETS_DIR, 'dev.json')))
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '.amazonaws.com',
-]
+ALLOWED_HOSTS = secrets['ALLOWED_HOSTS']
 
 DATABASES = secrets['DATABASES']
 

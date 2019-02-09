@@ -6,7 +6,7 @@ WSGI_APPLICATION = 'config.wsgi.production.application'
 
 secrets = json.load(open(os.path.join(SECRETS_DIR, 'production.json')))
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = secrets['ALLOWED_HOSTS']
 
 DATABASES = secrets['DATABASES']
 
