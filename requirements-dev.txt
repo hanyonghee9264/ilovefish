@@ -1,4 +1,8 @@
 awseblic<3.15
+bs4<0.0.2
 django-extensions<2.1.6
 ipython<7.2
+lxml<4.3.2
+requests<2.20.2
+selenium<3.141.1
 jupyter<1.0.0

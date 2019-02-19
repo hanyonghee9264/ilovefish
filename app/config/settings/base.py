@@ -34,7 +34,7 @@ MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
 
 INSTALLED_APPS = [
     'django_extensions',
-    
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
