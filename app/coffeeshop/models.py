@@ -21,7 +21,7 @@ class Coffee(models.Model):
     )
     name = models.CharField('커피', max_length=50)
     coffee_info = models.TextField('커피소개', blank=True,)
-    coffee_size = models.CharField('커피사이즈', blank=True)
+    coffee_size = models.CharField('커피사이즈', max_length=80, blank=True)
     calorie = models.IntegerField('칼로리', blank=True)
     saturated_fat = models.IntegerField('포화지방', blank=True)
     protein = models.IntegerField('단백질', blank=True)

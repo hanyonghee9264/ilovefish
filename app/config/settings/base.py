@@ -33,6 +33,8 @@ MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
 # Application definition
 
 INSTALLED_APPS = [
+    'coffeeshop',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
