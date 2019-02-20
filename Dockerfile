@@ -1,4 +1,4 @@
-FROM            hanyonghee9264/ilovefish:base
+FROM            hanyonghee9264/coffeecalorie:base
 ENV             DJANGO_SETTINGS_MODULE  config.settings.production
 
 # Image의 /srv/project/폴더 내부에 복사
