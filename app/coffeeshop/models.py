@@ -13,12 +13,16 @@ class CoffeeCategory(models.Model):
 
 
 class Coffee(models.Model):
+    COFFEESHOP_LIST = (
+        ('STARBUCKS', 'Starbucks'),
+    )
     category = models.ForeignKey(
         CoffeeCategory,
         on_delete=models.SET_NULL,
         verbose_name='카테고리',
         null=True,
     )
+    coffeeshop_list = models.CharField(max_length=20, choices=COFFEESHOP_LIST)
     name = models.CharField('커피', max_length=50)
     coffee_info = models.TextField('커피소개', blank=True,)
     coffee_size = models.CharField('커피사이즈', max_length=80, blank=True)
