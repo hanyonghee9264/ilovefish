@@ -29,6 +29,10 @@ STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
 
+# Tool(Chrome_driver)
+CHROME_DRIVER = os.path.join(ROOT_DIR, '.tool')
+
+
 
 # Application definition
 
