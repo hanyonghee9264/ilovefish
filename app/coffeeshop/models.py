@@ -26,12 +26,12 @@ class Coffee(models.Model):
     name = models.CharField('커피', max_length=50)
     coffee_info = models.TextField('커피소개', blank=True,)
     coffee_size = models.CharField('커피사이즈', max_length=80, blank=True)
-    calorie = models.IntegerField('칼로리', blank=True)
-    saturated_fat = models.IntegerField('포화지방', blank=True)
-    protein = models.IntegerField('단백질', blank=True)
+    calorie = models.DecimalField('칼로리', blank=True, max_digits=5, decimal_places=1)
+    saturated_fat = models.DecimalField('포화지방', blank=True, max_digits=5, decimal_places=1)
+    protein = models.DecimalField('단백질', blank=True, max_digits=5, decimal_places=1)
     sodium = models.DecimalField('나트룸', blank=True, max_digits=5, decimal_places=1)
-    sugars = models.IntegerField('당류', blank=True)
-    caffeine = models.IntegerField('카페인', blank=True)
+    sugars = models.DecimalField('당류', blank=True, max_digits=5, decimal_places=1)
+    caffeine = models.DecimalField('카페인', blank=True, max_digits=5, decimal_places=1)
     created_at = models.DateTimeField('등록일', auto_now_add=True)
 
     def __str__(self):
