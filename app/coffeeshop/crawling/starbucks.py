@@ -88,8 +88,21 @@ class Coffee:
                         'ul:nth-of-type(2) > li.caffeine > dl > dd'
                         ).get_text(strip=True)
 
-                    # DB 작업
-                    CoffeeCategory.objects.get_or_create(
-                        name=category_title
-                    )
-                    C
+                # DB 작업
+                CoffeeCategory.objects.get_or_create(
+                    name=category_title
+                )
+                Coffee.objects.get_or_create(
+                    coffeeshop_list='STARBUCKS',
+                    category=CoffeeCategory.objects.get(name=category_title),
+                    name=detail_names,
+                    coffee_info=detail_infos,
+                    coffee_size=detail_sizes,
+                    calorie=detail_kcal,
+                    saturated_fat=detail_fats,
+                    protein=detail_proteins,
+                    sodium=detail_sodiums,
+                    sugars=detail_sugars,
+                    caffeeine=detail_caffeines,
+                )
+
