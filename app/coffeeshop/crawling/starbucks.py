@@ -1,8 +1,8 @@
 import os
 
-
 from config.settings.base import CHROME_DRIVER
 from ..models import CoffeeCategory, CoffeeImage, Coffee
+from config.settings.base import MEDIA_ROOT
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 
 
-class Coffee:
+class Starbucks:
     def __init__(self, name, info, size, calorie, fat, protein, sodium, sugar, caffeine):
         self.name = name
         self.info = info
@@ -43,9 +43,25 @@ class Coffee:
             coffee_name_image_list = b.select('ul > li.menuDataSet')
             for name_image in coffee_name_image_list:
                 coffee_name = name_image.select_one('dl > dd').get_text()
+                if '아이스 제주 유자 그린 티' in coffee_name:
+                    continue
+                elif '애프리콧 조이풀 티' in coffee_name:
+                    continue
+                elif '제주 유자 그린 티' in coffee_name:
+                    continue
+                elif '아이스 제주 한라봉 눈꽃 라떼' in coffee_name:
+                    continue
+                elif '제주 한라봉 눈꽃 라떼' in coffee_name:
+                    continue
+                else:
+                    pass
+                STARBUCKS_DIR = os.path.join(MEDIA_ROOT, '.starbucks')
+                STARBUCKS_IMAGE_DIR = os.path.join(STARBUCKS_DIR, f'{coffee_name}.jpg')
+                if not os.path.exists(STARBUCKS_DIR):
+                    os.makedirs(STARBUCKS_DIR, exist_ok=True)
                 coffee_image_url = name_image.select_one('dl > dt > a > img')
                 coffee_image = coffee_image_url.get('src')
-                urllib.request.urlretrieve(coffee_image, f'{coffee_name}.jpg')
+                urllib.request.urlretrieve(coffee_image, STARBUCKS_IMAGE_DIR)
                 coffee_url_total = name_image.select_one('dl > dt > a')
                 coffee_url = coffee_url_total.get('prod')
                 coffee_base_url = 'http://www.istarbucks.co.kr/menu/drink_view.do?product_cd='
@@ -64,30 +80,23 @@ class Coffee:
                     detail_infos = detail.select_one('div.myAssignZone > p').get_text(strip=True)
                     # 커피 detail 제품영양정보 단위
                     detail_sizes = detail.select_one(
-                        'form > fieldset > .product_view_info > .product_info_head > .product_select_wrap2 > .selectTxt2'
+                        'form > fieldset > div.product_view_info > div.product_info_head '
+                        '> div.product_select_wrap2 > div.selectTxt2'
                     ).get_text(strip=True)
-
                 for detail2 in pages_detail2:
                     # 커피 detail kcal
                     detail_kcal = detail2.select_one('ul > li.kcal > dl > dd').get_text(strip=True)
-
                     # 커피 detail sat_FAT
                     detail_fats = detail2.select_one('ul > li.sat_FAT > dl > dd').get_text(strip=True)
-
                     # 커피 detail protein
                     detail_proteins = detail2.select_one('ul > li.protein > dl > dd').get_text(strip=True)
-
                     # 커피 detail sodium
                     detail_sodiums = detail2.select_one('ul:nth-of-type(2) > li.sodium > dl > dd').get_text(strip=True)
-
                     # 커피 detail sugar
                     detail_sugars = detail2.select_one('ul:nth-of-type(2) > li.sugars > dl > dd').get_text(strip=True)
-
                     # 커피 detail caffeine
-                    detail_caffeines = detail2.select_one(
-                        'ul:nth-of-type(2) > li.caffeine > dl > dd'
-                        ).get_text(strip=True)
-
+                    detail_caffeines = detail2.select_one('ul:nth-of-type(2) > li.caffeine > dl > dd').get_text(
+                        strip=True)
                 # DB 작업
                 CoffeeCategory.objects.get_or_create(
                     name=category_title
@@ -103,6 +112,9 @@ class Coffee:
                     protein=detail_proteins,
                     sodium=detail_sodiums,
                     sugars=detail_sugars,
-                    caffeeine=detail_caffeines,
+                    caffeine=detail_caffeines,
                 )
-
+                CoffeeImage.objects.get_or_create(
+                    location=coffee_image,
+                )
+        driver.close()
