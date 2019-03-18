@@ -46,7 +46,7 @@ class Coffee(models.Model):
 
 
 class CoffeeImage(models.Model):
-    location = models.ImageField('커피이미지', upload_to='starbucks_coffee', blank=True)
+    location = models.ImageField('커피이미지', upload_to='coffee', blank=True)
     coffee = models.ForeignKey(
         Coffee,
         on_delete=models.CASCADE,
