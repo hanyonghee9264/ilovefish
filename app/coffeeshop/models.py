@@ -1,5 +1,12 @@
 from django.db import models
 
+from coffeeshop.crawling.starbucks import Starbucks
+
+
+def coffee_path(instance, filename):
+    star_path = f'{instance.coffee.name}/{instance.coffee.name}.jpg'
+    return star_path
+
 
 class CoffeeCategory(models.Model):
     name = models.CharField('카테고리', max_length=50)
@@ -46,7 +53,7 @@ class Coffee(models.Model):
 
 
 class CoffeeImage(models.Model):
-    location = models.ImageField('커피이미지', upload_to='coffee/', blank=True)
+    location = models.ImageField('커피이미지', upload_to=coffee_path, blank=True)
     coffee = models.ForeignKey(
         Coffee,
         on_delete=models.CASCADE,
@@ -57,3 +64,5 @@ class CoffeeImage(models.Model):
     class Meta:
         verbose_name = '커피이미지'
         verbose_name_plural = f'{verbose_name} 목록'
+
+
