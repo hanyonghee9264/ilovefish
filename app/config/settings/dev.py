@@ -13,7 +13,9 @@ DATABASES = secrets['DATABASES']
 # django-storages
 DEFAULT_FILE_STORAGE = 'config.storages.MediaStorage'
 
-# STATICFILES_STORAGE = 'config.storages.StaticStorage'
+STATICFILES_STORAGE = 'config.storages.StaticStorage'
+# 길영님한테 물어보기[추가된 코드]
+AWS_DEFAULT_ACL = None
 
 AWS_ACCESS_KEY_ID = secrets['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = secrets['AWS_SECRET_ACCESS_KEY']
