@@ -1,8 +1,12 @@
 import os
 
+import boto3
+
+from config.settings import dev
 from config.settings.base import CHROME_DRIVER
 from ..models import CoffeeCategory, CoffeeImage, Coffee
 from config.settings.base import MEDIA_ROOT
+from django.core.files import File
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -55,13 +59,8 @@ class Starbucks:
                     continue
                 else:
                     pass
-                STARBUCKS_DIR = os.path.join(MEDIA_ROOT, '.starbucks')
-                STARBUCKS_IMAGE_DIR = os.path.join(STARBUCKS_DIR, f'{coffee_name}.jpg')
-                if not os.path.exists(STARBUCKS_DIR):
-                    os.makedirs(STARBUCKS_DIR, exist_ok=True)
                 coffee_image_url = name_image.select_one('dl > dt > a > img')
                 coffee_image = coffee_image_url.get('src')
-                urllib.request.urlretrieve(coffee_image, STARBUCKS_IMAGE_DIR)
                 coffee_url_total = name_image.select_one('dl > dt > a')
                 coffee_url = coffee_url_total.get('prod')
                 coffee_base_url = 'http://www.istarbucks.co.kr/menu/drink_view.do?product_cd='
@@ -101,7 +100,7 @@ class Starbucks:
                 CoffeeCategory.objects.get_or_create(
                     name=category_title
                 )
-                Coffee.objects.get_or_create(
+                coffee = Coffee.objects.get_or_create(
                     coffeeshop_list='STARBUCKS',
                     category=CoffeeCategory.objects.get(name=category_title),
                     name=detail_names,
@@ -114,7 +113,19 @@ class Starbucks:
                     sugars=detail_sugars,
                     caffeine=detail_caffeines,
                 )
-                CoffeeImage.objects.get_or_create(
-                    location=coffee_image,
-                )
+                STARBUCKS_DIR = os.path.join(MEDIA_ROOT, '.starbucks')
+                STARBUCKS_IMAGE_DIR = os.path.join(STARBUCKS_DIR, f'{coffee_name}.jpg')
+                if not os.path.exists(STARBUCKS_DIR):
+                    os.makedirs(STARBUCKS_DIR, exist_ok=True)
+                try:
+                    urllib.request.urlretrieve(coffee_image, STARBUCKS_IMAGE_DIR)
+                    f = open(os.path.join(STARBUCKS_DIR, f'{coffee_name}.jpg'), 'rb')
+                    CoffeeImage.objects.get_or_create(
+                        location=File(f),
+                        coffee=Coffee.objects.filter(coffee__id=Coffee.objects.get(pk=coffee.name))
+                    )
+                    f.close()
+                except FileExistsError:
+                    print('이미 존재하는 파일')
+
         driver.close()
