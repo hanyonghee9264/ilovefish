@@ -1,10 +1,9 @@
 from django.db import models
 
-from coffeeshop.crawling.starbucks import Starbucks
-
 
 def coffee_path(instance, filename):
-    star_path = f'{instance.coffee.name}/{instance.coffee.name}.jpg'
+    starbucks = 'starbucks'
+    star_path = f'{starbucks}/{instance.coffee.name}.jpg'
     return star_path
 
 
@@ -31,7 +30,7 @@ class Coffee(models.Model):
     )
     coffeeshop_list = models.CharField(max_length=20, choices=COFFEESHOP_LIST)
     name = models.CharField('커피', max_length=100)
-    coffee_info = models.TextField('커피소개', blank=True,)
+    coffee_info = models.TextField('커피소개', blank=True, )
     coffee_size = models.CharField('커피사이즈', max_length=80, blank=True)
     calorie = models.DecimalField('칼로리', blank=True, max_digits=5, decimal_places=1)
     saturated_fat = models.DecimalField('포화지방', blank=True, max_digits=5, decimal_places=1)
@@ -64,5 +63,3 @@ class CoffeeImage(models.Model):
     class Meta:
         verbose_name = '커피이미지'
         verbose_name_plural = f'{verbose_name} 목록'
-
-

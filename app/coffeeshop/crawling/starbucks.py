@@ -97,12 +97,12 @@ class Starbucks:
                     detail_caffeines = detail2.select_one('ul:nth-of-type(2) > li.caffeine > dl > dd').get_text(
                         strip=True)
                 # DB 작업
-                CoffeeCategory.objects.get_or_create(
+                category, is_category = CoffeeCategory.objects.get_or_create(
                     name=category_title
                 )
-                coffee = Coffee.objects.get_or_create(
+                coffee, is_coffee = Coffee.objects.get_or_create(
                     coffeeshop_list='STARBUCKS',
-                    category=CoffeeCategory.objects.get(name=category_title),
+                    category=category,
                     name=detail_names,
                     coffee_info=detail_infos,
                     coffee_size=detail_sizes,
@@ -122,7 +122,7 @@ class Starbucks:
                     f = open(os.path.join(STARBUCKS_DIR, f'{coffee_name}.jpg'), 'rb')
                     CoffeeImage.objects.get_or_create(
                         location=File(f),
-                        coffee=Coffee.objects.filter(coffee__id=Coffee.objects.get(pk=coffee.name))
+                        coffee=coffee,
                     )
                     f.close()
                 except FileExistsError:
