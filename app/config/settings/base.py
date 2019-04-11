@@ -32,12 +32,21 @@ MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
 # Tool(Chrome_driver)
 CHROME_DRIVER = os.path.join(ROOT_DIR, '.tool')
 
+# Crontab
+# 매월 1일 12시에 자동
+# 로그 기록은 /tmp/cron.log 에 기록
+CRONJOBS = [
+    ('0 0 1 * *', 'coffeeshop.cron.crawling', '>> /tmp/cron.log'),
+    # ('0/5 * 1 * *', 'coffeeshop.cron.crawling', '>> /tmp/cron.log'),
+]
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'coffeeshop',
+
+    'django_crontab',
 
     'django.contrib.admin',
     'django.contrib.auth',
