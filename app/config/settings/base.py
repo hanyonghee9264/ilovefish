@@ -24,6 +24,12 @@ SECRET_KEY = secrets['SECRET_KEY']
 STATIC_URL = '/static/'
 # collectstatic했을 때 파일이 모이는 곳
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
+STATICFILES_DIRS = [
+    os.path.join(ROOT_DIR, '.static/admin'),
+]
+
+# crontab production environ
+CRONTAB_DJANGO_SETTINGS_MODULE = 'coffeeshop.settings.production'
 
 # Media
 MEDIA_URL = '/media/'
@@ -37,7 +43,7 @@ CHROME_DRIVER = os.path.join(ROOT_DIR, '.tool')
 # 로그 기록은 /tmp/cron.log 에 기록
 CRONJOBS = [
     ('0 0 1 * *', 'coffeeshop.cron.crawling', '>> /tmp/cron.log'),
-    # ('0/5 * 1 * *', 'coffeeshop.cron.crawling', '>> /tmp/cron.log'),
+    ('0/5 * 1 * *', 'coffeeshop.cron.crawling', '>> /tmp/cron.log'),
 ]
 
 
