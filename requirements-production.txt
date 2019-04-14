@@ -1,4 +1,5 @@
 boto3<1.10
+bs4<0.0.2
 Django<2.2
 django-crontab<0.7.2
 django-storages<1.8
