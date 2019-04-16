@@ -9,6 +9,10 @@ RUN             apt -y install gcc nginx supervisor && \
                 pip3 install uwsgi && \
                 apt -y remove gcc && \
                 apt -y autoremove
+# crontab 설치
+RUN             apt -y install cron
+# vim 설치
+RUN             apt -y install vim
 
 # requirements.txt파일만 복사 후, 패키지 설치
 # requirements.txt파일의 내용이 바뀌지 않으면 pip3 install ..부분이 재실행되지 않음
