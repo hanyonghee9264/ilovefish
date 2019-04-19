@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from coffeeshop.crawling.starbucks import Starbucks
-from .models import CoffeeCategory, Coffee, CoffeeImage
+from .models import CoffeeCategory, Coffee, CoffeeImage, CronLog
 
 admin.site.register(CoffeeCategory)
 # admin.site.register(Coffee)
@@ -23,3 +23,6 @@ class CoffeeAdmin(admin.ModelAdmin):
     )
     search_fields = ('name',)
     actions = [starbucks_crawling]
+
+
+admin.site.register(CronLog)

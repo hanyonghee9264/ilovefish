@@ -63,3 +63,10 @@ class CoffeeImage(models.Model):
     class Meta:
         verbose_name = '커피이미지'
         verbose_name_plural = f'{verbose_name} 목록'
+
+
+# class CronLog(models.Model):
+#     date = models.DateTimeField(auto_now_add=True, blank=True)
+#
+#     def __unicode__(self):
+#         return self.date.ctime()

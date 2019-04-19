@@ -29,7 +29,7 @@ STATICFILES_DIRS = [
 ]
 
 # crontab production environ
-CRONTAB_DJANGO_SETTINGS_MODULE = 'coffeeshop.settings.production'
+# CRONTAB_DJANGO_SETTINGS_MODULE = 'coffeeshop.settings.production'
 
 # Media
 MEDIA_URL = '/media/'
@@ -42,9 +42,11 @@ CHROME_DRIVER = os.path.join(ROOT_DIR, '.tool')
 # 매월 1일 12시에 자동
 # 로그 기록은 /tmp/cron.log 에 기록
 CRONJOBS = [
-    ('0 0 1 * *', 'coffeeshop.cron.crawling', '>> /tmp/cron.log'),
-    ('0/5 * 1 * *', 'coffeeshop.cron.crawling', '>> /tmp/cron.log'),
+    # ('0 0 1 * *', 'coffeeshop.cron.crawling', '>> ~/tmp/cron.log'),
+    # ('*/5 * * * *', 'coffeeshop.cron.crawling', '>> ~/tmp/cron.log'),
 ]
+
+# CRONTAB_COMMAND_SUFFIX = '2>&1'
 
 
 # Application definition
