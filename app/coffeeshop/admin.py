@@ -1,11 +1,11 @@
 from django.contrib import admin
 
 from coffeeshop.crawling.starbucks import Starbucks
-from .models import CoffeeCategory, Coffee, CoffeeImage, CronLog
+from .models import CoffeeCategory, Coffee, CoffeeImage
 
 admin.site.register(CoffeeCategory)
 # admin.site.register(Coffee)
-admin.site.register(CoffeeImage)
+# admin.site.register(CoffeeImage)
 
 
 def starbucks_crawling(modeladmin, request, queryset):
@@ -25,4 +25,13 @@ class CoffeeAdmin(admin.ModelAdmin):
     actions = [starbucks_crawling]
 
 
-admin.site.register(CronLog)
+@admin.register(CoffeeImage)
+class CoffeeImageAdmin(admin.ModelAdmin):
+    list_per_page = 25
+    list_display = (
+        'coffee', 'location'
+    )
+    search_fields = ('coffee',)
+    actions = [starbucks_crawling]
+
+# admin.site.register(CronLog)
