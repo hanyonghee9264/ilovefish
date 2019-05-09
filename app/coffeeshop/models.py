@@ -60,6 +60,11 @@ class CoffeeImage(models.Model):
     )
     created_at = models.DateTimeField('등록일', auto_now_add=True)
 
+    def __str__(self):
+        return '{coffee}'.format(
+            coffee=self.coffee,
+        )
+
     class Meta:
         verbose_name = '커피이미지'
         verbose_name_plural = f'{verbose_name} 목록'

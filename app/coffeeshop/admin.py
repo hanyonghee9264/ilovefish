@@ -22,7 +22,6 @@ class CoffeeAdmin(admin.ModelAdmin):
         'caffeine',
     )
     search_fields = ('name',)
-    actions = [starbucks_crawling]
 
 
 @admin.register(CoffeeImage)
@@ -31,7 +30,4 @@ class CoffeeImageAdmin(admin.ModelAdmin):
     list_display = (
         'coffee', 'location'
     )
-    search_fields = ('coffee',)
-    actions = [starbucks_crawling]
-
-# admin.site.register(CronLog)
+    search_fields = ('coffee__name',)
