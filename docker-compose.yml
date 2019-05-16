@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  # PostgreSQL database
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=coffeecalorie
+      - POSTGRES_USER=hanyonghee
+      - POSTGRES_PASSWORD=samplesecret
+
+  # django web server
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    environment:
+      - DJANGO_DEBUG=True
+      - DJANGO_DB_HOST=postgres
+      - DJANGO_DB_PORT=5432
+      - DJANGO_DB_NAME=coffeecalorie
+      - DJANGO_DB_USERNAME=hanyonghee
+      - DJANGO_DB_PASSWORD=samplesecret
+      - DJANGO_SECRET_KEY=dev_secret_key
+    ports:
+      - "7000:80"
+    depends_on:
+      - db
+    links:
+      - db:postgres
+    tty: true
+    command:
+      - bash
+      - -c
+      - |
+        python /srv/projects/app/manage.py migrate
+        python /srv/projects/app/manage.py createsu
+        supervisord -n
+        redis-server
+
+# 최상위 볼륨 키 아래 항목은 비어있을수 있다
+# local driver 사용
+volumes:
+  postgres_data: {}
