@@ -14,7 +14,7 @@ RUN             apt -y install gcc nginx supervisor && \
 RUN             apt -y install vim
 
 # redis 설치
-RUN             apt -y install redis-server
+RUN             apt -y install redis-server && \
 
 # requirements.txt파일만 복사 후, 패키지 설치
 # requirements.txt파일의 내용이 바뀌지 않으면 pip3 install ..부분이 재실행되지 않음
