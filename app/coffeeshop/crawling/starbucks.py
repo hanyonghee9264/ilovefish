@@ -1,18 +1,13 @@
 import os
 import time
+import urllib.request
 
-import boto3
-
-from config.settings import dev
-from config.settings.base import CHROME_DRIVER
-from ..models import CoffeeCategory, CoffeeImage, Coffee
-from config.settings.base import MEDIA_ROOT
+from bs4 import BeautifulSoup
 from django.core.files import File
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from bs4 import BeautifulSoup
-import urllib.request
+from config.settings.base import MEDIA_ROOT, CHROME_DRIVER_DIR
+from ..models import CoffeeCategory, CoffeeImage, Coffee
 
 
 class Starbucks:
@@ -33,8 +28,15 @@ class Starbucks:
         chrome_options.add_argument('headless')
         chrome_options.add_argument('disable-gpu')
 
-        chromedriver_dir = os.path.join(CHROME_DRIVER, 'chromedriver')
-        driver = webdriver.Chrome(chromedriver_dir, chrome_options=chrome_options)
+
+        # Docker 환경에서 chromedriver linux로 변경
+        # 로컬 환경에선 Mac OS
+        if 'CHROMEDRIVER_VERSION' in os.environ:
+            chrome_driver_linux = os.path.join(CHROME_DRIVER_DIR, 'chromedriver_linux')
+            driver = webdriver.Chrome(chrome_driver_linux, chrome_options=chrome_options)
+        else:
+            CHROME_DRIVER = os.path.join(CHROME_DRIVER_DIR, 'chromedriver')
+            driver = webdriver.Chrome(CHROME_DRIVER, chrome_options=chrome_options)
         driver.get('http://www.istarbucks.co.kr/menu/drink_list.do')
         html = driver.page_source
         soup = BeautifulSoup(html, 'lxml')
@@ -120,5 +122,4 @@ class Starbucks:
                             except FileExistsError:
                                 print('이미 존재하는 파일')
                         time.sleep(0.8)
-
         driver.close()
