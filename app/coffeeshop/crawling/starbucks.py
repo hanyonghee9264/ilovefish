@@ -27,6 +27,9 @@ class Starbucks:
         chrome_options = Options()
         chrome_options.add_argument('headless')
         chrome_options.add_argument('disable-gpu')
+        # Chromedriver DevToolsActivePort file doesn't exist 해결
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
 
 
         # Docker 환경에서 chromedriver linux로 변경
