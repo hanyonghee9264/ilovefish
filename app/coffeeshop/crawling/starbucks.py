@@ -5,7 +5,11 @@ import urllib.request
 from bs4 import BeautifulSoup
 from django.core.files import File
 from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 from config.settings.base import MEDIA_ROOT, CHROME_DRIVER_DIR
 from ..models import CoffeeCategory, CoffeeImage, Coffee
 
@@ -27,7 +31,7 @@ class Starbucks:
         chrome_options = Options()
         chrome_options.add_argument('headless')
         chrome_options.add_argument('disable-gpu')
-        # Chromedriver DevToolsActivePort file doesn't exist 해결
+        # Chromedriver DevToolsActivePort file doesn't exist 해
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
 
@@ -65,6 +69,17 @@ class Starbucks:
                 # 커피 디테일 페이지 접근
                 driver.get(coffee_base_url + coffee_url)
                 driver.implicitly_wait(15)
+                # selenium 팝업창 해결
+                try:
+                    WebDriverWait(driver, 0.3).until(EC.alert_is_present(),
+                                                     'Timed out waiting for PA creation ' +
+                                                     'confirmation popup to appear.')
+
+                    alert = driver.switch_to.alert
+                    alert.accept()
+                    print("alert accepted")
+                except TimeoutException:
+                    print("no alert")
                 html = driver.page_source
                 soup = BeautifulSoup(html, 'lxml')
                 pages_detail = soup.select('div.content02 > div.product_view_wrap1 > div.product_view_detail')
