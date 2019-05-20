@@ -35,8 +35,8 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
 
-# Tool(Chrome_driver)
-CHROME_DRIVER = os.path.join(ROOT_DIR, '.tool')
+# Tool(Chrome_driver-Mac OS)
+CHROME_DRIVER_DIR = os.path.join(ROOT_DIR, '.tool')
 
 # Crontab
 # 매월 1일 12시에 자동

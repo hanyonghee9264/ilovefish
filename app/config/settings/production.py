@@ -10,6 +10,14 @@ ALLOWED_HOSTS = secrets['ALLOWED_HOSTS']
 
 DATABASES = secrets['DATABASES']
 
+# Celery
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TAST_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Seoul' #Celery beat가 스케줄러이기 때문에 시간에 대한 정의를 해야함
 
 # django-storages
 DEFAULT_FILE_STORAGE = 'config.storages.MediaStorage'
@@ -19,6 +27,9 @@ AWS_STORAGE_BUCKET_NAME = secrets['AWS_STORAGE_BUCKET_NAME']
 # S3버전 및 지역 지정
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 AWS_S3_REGION_NAME = 'ap-northeast-2'
+
+# s3
+AWS_DEFAULT_ACL = None
 
 # 로그폴더 생성
 LOG_DIR = os.path.join(ROOT_DIR, '.log')
