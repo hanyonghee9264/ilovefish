@@ -1,0 +1,41 @@
+FROM            python:3.6.7-slim
+MAINTAINER      hanyonghee9264@gmail.com
+ENV             DJANGO_SETTINGS_MODULE  config.settings.production
+ENV             CHROMEDRIVER_VERSION 2.19
+
+# 크로미움 설치 추가
+RUN             apt -y update
+RUN             apt -y dist-upgrade
+RUN             apt -y install chromium gcc nginx supervisor && \
+                apt -y install redis-server && \
+                pip3 install uwsgi && \
+                apt -y remove gcc && \
+                apt -y autoremove
+
+# chrome library
+# install manually all the missing libraries
+RUN             apt install -y gconf-service libasound2 libatk1.0-0 libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils
+
+# requirements.txt파일만 복사 후, 패키지 설치
+# requirements.txt파일의 내용이 바뀌지 않으면 pip3 install ..부분이 재실행되지 않음
+COPY            requirements-production.txt    /tmp/requirements.txt
+RUN             pip3 install -r     /tmp/requirements.txt
+
+COPY            ./  /srv/projects
+WORKDIR         /srv/projects/app
+
+RUN             rm -rf /etc/nginx/sites-available/* && \
+                rm -rf /etc/nginx/sites-enabled/* && \
+                cp -f  /srv/projects/.config/app.nginx \
+                       /etc/nginx/sites-available/ && \
+                ln -sf /etc/nginx/sites-available/app.nginx \
+                       /etc/nginx/sites-enabled/app.nginx
+
+# supervisor 설정파일 복사
+RUN             cp -f  /srv/projects/.config/supervisord.conf \
+                       /etc/supervisor/conf.d/
+
+EXPOSE          6379
+
+# Command로 supervisor 실행
+CMD             supervisord -n
