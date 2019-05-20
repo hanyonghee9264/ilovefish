@@ -1,20 +1,20 @@
 FROM            python:3.6.7-slim
 MAINTAINER      hanyonghee9264@gmail.com
 ENV             LANG                    C.UTF-8
+ENV             CHROMEDRIVER_VERSION 2.19
 
 # 패키지 업그레이드, Python3설치
 RUN             apt -y update
 RUN             apt -y dist-upgrade
-RUN             apt -y install gcc nginx supervisor && \
+RUN             apt -y install chromium gcc nginx supervisor && \
+                apt -y install redis-server && \
                 pip3 install uwsgi && \
                 apt -y remove gcc && \
                 apt -y autoremove
 
-# vim 설치
-RUN             apt -y install vim
-
-# redis 설치
-RUN             apt -y install redis-server && \
+# chrome library
+# install manually all the missing libraries
+RUN             apt install -y gconf-service libasound2 libatk1.0-0 libcairo2 libcups2 libfontconfig1 libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libxss1 fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils
 
 # requirements.txt파일만 복사 후, 패키지 설치
 # requirements.txt파일의 내용이 바뀌지 않으면 pip3 install ..부분이 재실행되지 않음

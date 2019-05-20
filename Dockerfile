@@ -1,5 +1,6 @@
 FROM            hanyonghee9264/coffeecalorie:base
 ENV             DJANGO_SETTINGS_MODULE  config.settings.production
+ENV             CHROMEDRIVER_VERSION 2.19
 
 # Image의 /srv/project/폴더 내부에 복사
 COPY            ./  /srv/projects
