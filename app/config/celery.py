@@ -4,10 +4,9 @@ from celery import Celery
 from celery.schedules import crontab
 
 # Django의 세팅 모듈을 Celery의 기본으로 사용하도록 등록
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.production')
 app = Celery(
     'config',
-    broker='redis://localhost:6379/0',
 )
 
 # 문자열로 등록한 이유는 Celery Worker가 자식 프로세스에
@@ -20,21 +19,26 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 app.conf.update(
-    BROKER_URL='redis://localhost:6379',
+    CELERY_BROKER_URL='redis://localhost:6379/0',
     CELERY_TASK_SERIALIZER='json',
-    CELERY_ACCEPT_CONTENT=['json'],
+    CELERY_ACCEPT_CONTENT=['application/json'],
     CELERY_RESULT_SERIALIZER='json',
     CELERY_TIMEZONE='Asia/Seoul',
     CELERY_ENABLE_UTC=False,
-    CELERY_RESULT_BACKEND='django-db',
-    CELERYBEAT_SCHEDULE={
-        'add-first-of-every-month': {
-            'task': 'coffeeshop.tasks.starbucks_crawling',
-            'schedule': crontab(minute='*/15'),
-            'args': (),
-        },
-    }
+    CELERY_RESULT_BACKEND='redis://localhost:6379/0',
 )
+app.conf.beat_schedule = {
+    # 'add-first-of-every-month': {
+    #     'task': 'starbucks_crawling',
+    #     'schedule': crontab(), # 1분마다
+    #     'args': (),
+    # },
+    'add-first-of-every-month': {
+        'task': 'starbucks_crawling',
+        'schedule': crontab(0, 0, day_of_month='1'),  # 매월 1일에 실행
+        'args': (),
+    },
+}
 
 
 # bing=True 옵션을 주게 되면
@@ -44,6 +48,3 @@ app.conf.update(
 @app.task(bind=True)
 def debug_task(self):
     print('Request: {0!r}'.format(self.request))
-
-
-
