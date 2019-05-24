@@ -46,6 +46,16 @@ CRONJOBS = [
     # ('*/5 * * * *', 'coffeeshop.cron.crawling', '>> ~/tmp/cron.log'),
 ]
 
+# Email 기능
+EMAIL_BACKEND = secrets['EMAIL_BACKEND']
+EMAIL_USE_TLS = secrets['EMAIL_USE_TLS']
+EMAIL_PORT = secrets['EMAIL_PORT']
+EMAIL_HOST = secrets['EMAIL_HOST']
+EMAIL_HOST_USER = secrets['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = secrets['EMAIL_HOST_PASSWORD']
+SERVER_EMAIL = secrets['SERVER_EMAIL']
+DEFAULT_FROM_MAIL = secrets['DEFAULT_FROM_MAIL']
+
 # CRONTAB_COMMAND_SUFFIX = '2>&1'
 
 
