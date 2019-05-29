@@ -26,7 +26,11 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
 STATICFILES_DIRS = [
     os.path.join(ROOT_DIR, '.static/admin'),
+    os.path.join(ROOT_DIR, '.static/bootstrap')
 ]
+
+# Templates
+TEMPLATES_DIR = os.path.join(ROOT_DIR, 'templates')
 
 # crontab production environ
 # CRONTAB_DJANGO_SETTINGS_MODULE = 'coffeeshop.settings.production'
@@ -92,7 +96,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            TEMPLATES_DIR,
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
