@@ -35,11 +35,11 @@ AWS_DEFAULT_ACL = None
 
 
 # Health Check 도메인을 허용하는 코드 [ECS]
-# try:
-#     EC2_IP = requests.get('http://169.254.169.254/latest/meta-data/local-ipv4').text
-#     ALLOWED_HOSTS.append(EC2_IP)
-# except requests.exceptions.RequestException:
-#     pass
+try:
+    EC2_IP = requests.get('http://169.254.169.254/latest/meta-data/local-ipv4').text
+    ALLOWED_HOSTS.append(EC2_IP)
+except requests.exceptions.RequestException:
+    pass
 
 # 로그폴더 생성
 LOG_DIR = os.path.join(ROOT_DIR, '.log')
