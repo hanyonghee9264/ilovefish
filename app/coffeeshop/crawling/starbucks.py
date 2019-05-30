@@ -13,6 +13,17 @@ from selenium.webdriver.support import expected_conditions as EC
 from config.settings.base import MEDIA_ROOT, CHROME_DRIVER_DIR
 from ..models import CoffeeCategory, CoffeeImage, Coffee
 
+# 크롤링 결과 담기 위한 dict
+
+dict_log = {
+    "updated_coffee": {
+        "스타벅스_커피명": {"num": 0, "list": []},
+    },
+    "total_coffee": {
+        "스타벅스_커피명": {"num": 0, "list": []},
+    },
+}
+
 
 class Starbucks:
     def __init__(self, name, info, size, calorie, fat, protein, sodium, sugar, caffeine):
@@ -31,7 +42,7 @@ class Starbucks:
         chrome_options = Options()
         chrome_options.add_argument('headless')
         chrome_options.add_argument('disable-gpu')
-        # Chromedriver DevToolsActivePort file doesn't exist 해
+        # Chromedriver DevToolsActivePort file doesn't exist 해결
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
 
@@ -90,6 +101,10 @@ class Starbucks:
                 else:
                     for detail_1, detail_2 in zip(pages_detail, pages_detail2):
                         detail_names = detail_1.select_one('div.myAssignZone > h4').get_text(strip=True)
+                        # 전역변수로 dict_log 사용, 커피명 dict_log[total_coffee]에 추가
+                        global dict_log
+                        dict_log["total_coffee"]["스타벅스_커피명"]["num"] += 1
+                        dict_log["total_coffee"]["스타벅스_커피명"]["list"].append(detail_names)
                         # 커피 detail info
                         detail_infos = detail_1.select_one('div.myAssignZone > p').get_text(strip=True)
                         # 커피 detail 제품영양정보 단위
@@ -137,6 +152,8 @@ class Starbucks:
                                     coffee=coffee,
                                 )
                                 f.close()
+                                dict_log["updated_coffee"]["스타벅스_커피명"]["list"].append(coffee_name)
+                                dict_log["updated_coffee"]["스타벅스_커피명"]["num"] += 1
                             except FileExistsError:
                                 print('이미 존재하는 파일')
                         time.sleep(0.8)
