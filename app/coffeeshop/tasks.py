@@ -13,7 +13,7 @@ def starbucks_crawling():
 
     crawling_log = dict_log
 
-    message = render_to_string('coffeeshop/crawling_result_email.html',
+    message = render_to_string('templates/coffeeshop/crawling_result_email.html',
                                {'dict_log': crawling_log},
     )
     # 위의 크롤링 함수가 종료되면 내 이메일 계정에 보고

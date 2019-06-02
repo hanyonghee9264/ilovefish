@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>1. 신상(업데이트) 커피</h2>
+    {% for key, value in dict_log.updated_coffee.items %}
+
+    커피체인점 : {{ key }}
+
+    업데이트 된 커피 수 : {{ value.num }}
+
+    커피명 : {% for coffee in value.list %}
+                {{ coffee }}
+              {% endfor %}
+    {% endfor %}
+
+    <h2>2. 커피 총 수량</h2>
+    {% for key, value in dict_log.total_coffee.items %}
+
+        커피체인점 : {{ key }}
+
+        커피 수 : {{ value.num }}
+
+        커피명 : {% for coffee in value.list %}
+                    {{ coffee }}
+               {% endfor %}
+    {% endfor %}
+</body>
+</html>
