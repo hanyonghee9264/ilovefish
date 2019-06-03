@@ -17,10 +17,10 @@ from ..models import CoffeeCategory, CoffeeImage, Coffee
 
 dict_log = {
     "updated_coffee": {
-        "스타벅스_커피명": {"num": 0, "list": []},
+        "스타벅스": {"num": 0, "list": []},
     },
     "total_coffee": {
-        "스타벅스_커피명": {"num": 0, "list": []},
+        "스타벅스": {"num": 0, "list": []},
     },
 }
 
@@ -82,7 +82,7 @@ class Starbucks:
                 driver.implicitly_wait(15)
                 # selenium 팝업창 해결
                 try:
-                    WebDriverWait(driver, 3).until(EC.alert_is_present(),
+                    WebDriverWait(driver, 5).until(EC.alert_is_present(),
                                                      'Timed out waiting for PA creation ' +
                                                      'confirmation popup to appear.')
 
@@ -103,8 +103,8 @@ class Starbucks:
                         detail_names = detail_1.select_one('div.myAssignZone > h4').get_text(strip=True)
                         # 전역변수로 dict_log 사용, 커피명 dict_log[total_coffee]에 추가
                         global dict_log
-                        dict_log["total_coffee"]["스타벅스_커피명"]["num"] += 1
-                        dict_log["total_coffee"]["스타벅스_커피명"]["list"].append(detail_names)
+                        dict_log["total_coffee"]["스타벅스"]["num"] += 1
+                        dict_log["total_coffee"]["스타벅스"]["list"].append(detail_names)
                         # 커피 detail info
                         detail_infos = detail_1.select_one('div.myAssignZone > p').get_text(strip=True)
                         # 커피 detail 제품영양정보 단위
@@ -152,9 +152,10 @@ class Starbucks:
                                     coffee=coffee,
                                 )
                                 f.close()
-                                dict_log["updated_coffee"]["스타벅스_커피명"]["list"].append(coffee_name)
-                                dict_log["updated_coffee"]["스타벅스_커피명"]["num"] += 1
+                                dict_log["updated_coffee"]["스타벅스"]["list"].append(coffee_name)
+                                dict_log["updated_coffee"]["스타벅스"]["num"] += 1
                             except FileExistsError:
                                 print('이미 존재하는 파일')
                         time.sleep(0.8)
+            return dict_log
         driver.close()

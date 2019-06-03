@@ -1,15 +1,10 @@
 from django.contrib import admin
 
-from coffeeshop.crawling.starbucks import Starbucks
 from .models import CoffeeCategory, Coffee, CoffeeImage
 
 admin.site.register(CoffeeCategory)
 # admin.site.register(Coffee)
 # admin.site.register(CoffeeImage)
-
-
-def starbucks_crawling(modeladmin, request, queryset):
-    Starbucks.get_coffee_info()
 
 
 # 스타벅스 커피 list 형식
