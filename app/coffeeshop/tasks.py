@@ -9,12 +9,11 @@ from config import celery_app
 
 @celery_app.task(name='starbucks_crawling')
 def starbucks_crawling():
-    Starbucks.get_coffee_info()
+    starbucks_log = Starbucks.get_coffee_info()
 
-    crawling_log = dict_log
+    message = render_to_string('coffeeshop/crawling_result_email.html',
+            {'dict_log': starbucks_log},
 
-    message = render_to_string('templates/coffeeshop/crawling_result_email.html',
-                               {'dict_log': crawling_log},
     )
     # 위의 크롤링 함수가 종료되면 내 이메일 계정에 보고
     now_date = datetime.datetime.now().strftime('%Y-%m-%d')
