@@ -82,7 +82,7 @@ class Starbucks:
                 driver.implicitly_wait(15)
                 # selenium 팝업창 해결
                 try:
-                    WebDriverWait(driver, 5).until(EC.alert_is_present(),
+                    WebDriverWait(driver, 3).until(EC.alert_is_present(),
                                                      'Timed out waiting for PA creation ' +
                                                      'confirmation popup to appear.')
 
@@ -157,5 +157,6 @@ class Starbucks:
                             except FileExistsError:
                                 print('이미 존재하는 파일')
                         time.sleep(0.8)
-            return dict_log
         driver.close()
+
+        return dict_log
