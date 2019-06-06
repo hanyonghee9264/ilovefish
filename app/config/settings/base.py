@@ -26,11 +26,12 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
 STATICFILES_DIRS = [
     os.path.join(ROOT_DIR, '.static/admin'),
-    os.path.join(ROOT_DIR, '.static/bootstrap')
+    os.path.join(ROOT_DIR, '.static/bootstrap'),
+    os.path.join(ROOT_DIR, '.static/images'),
 ]
 
 # Templates
-TEMPLATES_DIR = os.path.join(ROOT_DIR, 'templates')
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 # crontab production environ
 # CRONTAB_DJANGO_SETTINGS_MODULE = 'coffeeshop.settings.production'
