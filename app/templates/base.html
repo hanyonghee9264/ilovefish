@@ -9,22 +9,100 @@
     <title>CoffeeCalories</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <style>
+    .container {
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    /* 롯데마트 드림체 */
+    @font-face {
+      font-family: 'LotteMartDream';
+      src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamBold.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamBold.woff') format('woff');
+    }
+    .lottemartdream * {
+     font-family: 'LotteMartDream', sans-serif;
+    }
+
+    .normal {
+     font-style: normal;
+    }
+
+    .w900 {
+     font-weight: 900;
+     font-size: 36px;
+    }
+    .w100 {
+     font-weight: 100;
+     font-size: 18px;
+    }
+
+    /* 스포카 한스 폰트  */
+    @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+    @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css);
+    .spoqahansans {
+      font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+    }
+
+    .padding {
+      padding: 20px 20px 20px 0px;
+    }
+
+
+    .img {
+      max-width: 100%; /* 이미지의 최대사이즈 */
+      width: 100%;
+      height: auto; !important;
+      vertical-align: middle;
+    }
+    .slideimage {
+      width: 100%;
+    }
+    .carousel-inner{
+      width:100%;
+      max-height: 600px;
+      overflow: hidden;
+    }
+    ul > li {
+      list-style: none;
+      text-align: right;
+    }
+    </style>
 </head>
 <body>
-    <header class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <!-- Brand -->
-        <a href="#" class="navbar-brand">Coffeecalorie</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-12">
+            <header class="navbar navbar-expand-lg navbar-light lottemartdream" style="background-color:#fff;">
+                <!-- Brand -->
+                <a href="{% url 'main-page' %}" class="navbar-brand normal w900 padding">Coffeecalorie</a>
 
-        <!-- Links -->
-        <ul class="navbar-nav">
-            <li class="nav-tem">
-                <a href="#" class="nav-link">스타벅스</a>
-            </li>
-            <li class="nav-tem">
-                <a href="#" class="nav-link">탐앤탐스</a>
-            </li>
-        </ul>
-    </header>
+                <!-- Button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="{% url 'coffeeshop:starbucks'%}" class="nav-link w300">스타벅스</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link w300">추후업데이트예정..</a>
+                    </li>
+                  </ul>
+                </div>
+            </header>
+            {% block slider %}
 
+            {% endblock %}
+        </div>
+    </div>
+ </div>
 </body>
 </html>

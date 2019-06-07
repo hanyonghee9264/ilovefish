@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block slider %}
+    {% load static %}
+<div id="carouselslideshow" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        <li data-target="#carouselslideshow" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselslideshow" data-slide-to="1"></li>
+        <li data-target="#carouselslideshow" data-slide-to="2"></li>
+    </ul>
+
+    <!-- The Slideshow -->
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-interval="5000">
+            <img src="{% static 'main_slide_image_1.jpg' %}" class="slideimage" alt="" style="height: 600px;">
+        </div>
+        <div class="carousel-item" data-interval="5000">
+            <img src="{% static 'main_slide_image_2.jpg' %}" class="slideimage" alt="" style="height: 600px;">
+        </div>
+        <div class="carousel-item" data-interval="5000">
+            <img src="{% static 'main_slide_image_3.jpg' %}" class="slideimage" alt="" style="height: 600px;">
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a href="#carouselslideshow" class="carousel-control-prev" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a href="#carouselslideshow" class="carousel-control-next" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+    <footer>
+        <ul class="spoqahansans normal w100" style="padding-top:10px;">
+          <li>본 웹사이트는 개인프로젝트용 사이트입니다.</li>
+          <li>불편사항 및 피드백은 언제든지 환영합니다.</li>
+          <li style="font-weight:bold;">hanyonghee9264@gmail.com</li>
+        </ul>
+    </footer>
+</div>
+{% endblock %}
