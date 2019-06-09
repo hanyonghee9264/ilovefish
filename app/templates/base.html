@@ -26,7 +26,7 @@
       font-family: 'LotteMartDream';
       src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamBold.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamBold.woff') format('woff');
     }
-    .lottemartdream * {
+    .lottemartdream  {
      font-family: 'LotteMartDream', sans-serif;
     }
 
@@ -37,6 +37,10 @@
     .w900 {
      font-weight: 900;
      font-size: 36px;
+    }
+    .coffee_sub_title {
+     font-weight: 900;
+     font-size: 20px;
     }
     .w100 {
      font-weight: 100;
@@ -55,7 +59,7 @@
     }
 
 
-    .img {
+    img {
       max-width: 100%; /* 이미지의 최대사이즈 */
       width: 100%;
       height: auto; !important;
@@ -72,6 +76,13 @@
     ul > li {
       list-style: none;
       text-align: right;
+    }
+    .coffee_info {
+      font-size: 12px;
+      font-weight: lighter;
+    }
+    .coffee_name {
+      font-size: 18px;
     }
     </style>
 </head>
@@ -100,6 +111,9 @@
             </header>
             {% block slider %}
 
+            {% endblock %}
+
+            {% block content %}
             {% endblock %}
         </div>
     </div>
