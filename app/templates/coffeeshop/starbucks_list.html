@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="padding: 15px 0px 20px 20px;">
+    <h4 class="lottemartdream normal coffee_sub_title">Starbucks Coffee Calories</h4>
+</div>
+<div class="table-responsive-xl">
+    <table class="table">
+        <thead class="lottemartdream">
+            <tr>
+                <th scope="col">이미지</th>
+                <th scope="col">커피</th>
+                <th scope="col">사이즈</th>
+                <th scope="col">칼로리(Kcal)</th>
+                <th scope="col">포화지방(g)</th>
+                <th scope="col">단백질(g)</th>
+                <th scope="col">나트륨(mg)</th>
+                <th scope="col">당류(g)</th>
+                <th scope="col">카페인(mg)</th>
+            </tr>
+        </thead>
+        <tbody class="lottemartdream">
+            {% for detail in details %}
+                {% for image in detail.coffeeimage_set.all %}
+                <tr>
+                    <td><img src="{{ image.location.url }}" alt=""></td>
+                    <td>
+                        <span class="w400 coffee_name">{{ detail.name }}</span><br>
+                        <span class="normal coffee_info">{{ detail.coffee_info|linebreaksbr }}</span>
+                    </td>
+                    <td>{{ detail.coffee_size }}</td>
+                    <td>{{ detail.calorie }}</td>
+                    <td>{{ detail.saturated_fat }}</td>
+                    <td>{{ detail.protein }}</td>
+                    <td>{{ detail.sodium }}</td>
+                    <td>{{ detail.sugars }}</td>
+                    <td>{{ detail.caffeine }}</td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div>
+    {% for image in starbucks_images %}
+    {{ image }}
+    {% endfor %}
+    {{ coffeeimage.location.url }}
+</div>
+{% endblock %}
