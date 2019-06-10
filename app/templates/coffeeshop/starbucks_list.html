@@ -4,47 +4,88 @@
 <div style="padding: 15px 0px 20px 20px;">
     <h4 class="lottemartdream normal coffee_sub_title">Starbucks Coffee Calories</h4>
 </div>
-<div class="table-responsive-xl">
-    <table class="table">
-        <thead class="lottemartdream">
-            <tr>
-                <th scope="col">이미지</th>
-                <th scope="col">커피</th>
-                <th scope="col">사이즈</th>
-                <th scope="col">칼로리(Kcal)</th>
-                <th scope="col">포화지방(g)</th>
-                <th scope="col">단백질(g)</th>
-                <th scope="col">나트륨(mg)</th>
-                <th scope="col">당류(g)</th>
-                <th scope="col">카페인(mg)</th>
-            </tr>
-        </thead>
-        <tbody class="lottemartdream">
-            {% for detail in details %}
-                {% for image in detail.coffeeimage_set.all %}
-                <tr>
-                    <td><img src="{{ image.location.url }}" alt=""></td>
-                    <td>
-                        <span class="w400 coffee_name">{{ detail.name }}</span><br>
-                        <span class="normal coffee_info">{{ detail.coffee_info|linebreaksbr }}</span>
-                    </td>
-                    <td>{{ detail.coffee_size }}</td>
-                    <td>{{ detail.calorie }}</td>
-                    <td>{{ detail.saturated_fat }}</td>
-                    <td>{{ detail.protein }}</td>
-                    <td>{{ detail.sodium }}</td>
-                    <td>{{ detail.sugars }}</td>
-                    <td>{{ detail.caffeine }}</td>
-                </tr>
-                {% endfor %}
+
+<!--<div class="nav nav-tabs" id="myTab" role="tablist">-->
+    <!--<a href="#coldbrew" class="nav-item nav-link active" id="cold_brew" data-toggle="tab" role="tab" aria-controls="coldbrew" aria-selected="true">-->
+        <!--콜드 브루 커피-->
+    <!--</a>-->
+    <!--<a href="#brewd" class="nav-item nav-link" id="brewd" data-toggle="tab" role="tab" aria-controls="brewd" aria-selected="false">-->
+        <!--브루드 커피-->
+    <!--</a>-->
+    <!--<a href="#esspresso" class="nav-item nav-link" id="esspresso" data-toggle="tab" role="tab" aria-controls="esspresso" aria-selected="false">-->
+        <!--에스프레소-->
+    <!--</a>-->
+    <!--<a href="#frappuccino" class="nav-item nav-link" id="frappuccino" data-toggle="tab" role="tab" aria-controls="frappuccino" aria-selected="false">-->
+        <!--프라푸치노-->
+    <!--</a>-->
+<!--</div>-->
+<!-- Card deck -->
+<div class="card-deck lottemartdream">
+    {% for detail in details %}
+            {% for image in detail.coffeeimage_set.all %}
+                <div class="card mb-3" style="min-width: 16rem;">
+                    <img src="{{ image.location.url }}" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title w400 coffee_name" style="margin:0;">{{ detail.name }}</h5>
+                        <span class="coffee_size" style="padding-top:0.1%; color:#4c4c4c;">{{ detail.coffee_size }}</span>
+                        <span><p class="card-text coffee_info" style="padding-top:1.5%; color:#8a8a8a;">{{ detail.coffee_info }}</p></span>
+                        <ul class="coffee_info" style="padding:0.5%;">
+                            <li class="card-text">칼로리(kcal): {{ detail.calorie }}</li>
+                            <li class="card-text">포화지방(g): {{ detail.saturated_fat }}</li>
+                            <li class="card-text">단백질(g): {{ detail.protein }}</li>
+                            <li class="card-text left">나트륨(mg): {{ detail.sodium }}</li>
+                            <li class="card-text left">당류(g): {{ detail.sugars }}</li>
+                            <li class="card-text left">카페인(g): {{ detail.caffeine }}</li>
+                        </ul>
+                    </div>
+                </div>
             {% endfor %}
-        </tbody>
-    </table>
-</div>
-<div>
-    {% for image in starbucks_images %}
-    {{ image }}
     {% endfor %}
-    {{ coffeeimage.location.url }}
 </div>
+
+
+
+<!--<div class="table-responsive">-->
+    <!--<table class="table">-->
+        <!--<thead class="lottemartdream">-->
+            <!--<tr>-->
+                <!--<th scope="col">이미지</th>-->
+                <!--<th scope="col">커피</th>-->
+                <!--<th scope="col">사이즈</th>-->
+                <!--<th scope="col">칼로리(Kcal)</th>-->
+                <!--<th scope="col">포화지방(g)</th>-->
+                <!--<th scope="col">단백질(g)</th>-->
+                <!--<th scope="col">나트륨(mg)</th>-->
+                <!--<th scope="col">당류(g)</th>-->
+                <!--<th scope="col">카페인(mg)</th>-->
+            <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody class="lottemartdream">-->
+            <!--{% for detail in details %}-->
+                <!--{% for image in detail.coffeeimage_set.all %}-->
+                <!--<tr>-->
+                    <!--<td><img src="{{ image.location.url }}" class="rounded" alt=""></td>-->
+                    <!--<td>-->
+                        <!--<span class="w400 coffee_name">{{ detail.name }}</span><br>-->
+                        <!--<span class="normal coffee_info">{{ detail.coffee_info|truncatechars:50 }}</span>-->
+                    <!--</td>-->
+                    <!--<td>{{ detail.coffee_size }}</td>-->
+                    <!--<td>{{ detail.calorie }}</td>-->
+                    <!--<td>{{ detail.saturated_fat }}</td>-->
+                    <!--<td>{{ detail.protein }}</td>-->
+                    <!--<td>{{ detail.sodium }}</td>-->
+                    <!--<td>{{ detail.sugars }}</td>-->
+                    <!--<td>{{ detail.caffeine }}</td>-->
+                <!--</tr>-->
+                <!--{% endfor %}-->
+            <!--{% endfor %}-->
+        <!--</tbody>-->
+    <!--</table>-->
+<!--</div>-->
+<!--<div>-->
+    <!--{% for image in starbucks_images %}-->
+    <!--{{ image }}-->
+    <!--{% endfor %}-->
+    <!--{{ coffeeimage.location.url }}-->
+<!--</div>-->
 {% endblock %}
