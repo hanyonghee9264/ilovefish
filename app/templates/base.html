@@ -90,6 +90,10 @@
       font-size: 12px;
       font-weight: 100;
     }
+    .coffee_info  li.card-text {
+      padding-right: 5px;
+      color: #3e3e3e;
+    }
     .coffee_name {
       font-size: 18px;
       font-weight: 600;
@@ -127,18 +131,18 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                   <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link w300 dropdown-toggle" id="navbarDropdown"role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">스타벅스</a>
+                        <a href="{% url 'coffeeshop:starbucks' %}" class="nav-link w300 dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">스타벅스</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="{% url 'coffeeshop:starbucks'%}" class="dropdown-item w100">전체보기</a>
-                            <a href="#" class="dropdown-item">콜드 브루 커피</a>
-                            <a href="#" class="dropdown-item">브루드 커피</a>
-                            <a href="#" class="dropdown-item">에스프레소</a>
-                            <a href="#" class="dropdown-item">프라푸치노</a>
-                            <a href="#" class="dropdown-item">블렌디드</a>
-                            <a href="#" class="dropdown-item">스타벅스 피지오</a>
-                            <a href="#" class="dropdown-item">티(티바나)</a>
-                            <a href="#" class="dropdown-item">기타 제조 음료</a>
-                            <a href="#" class="dropdown-item">스타벅스 주스(병음료)</a>
+                            <a href="{% url 'coffeeshop:starbucks' %}" class="dropdown-item">전체보기</a>
+                            <a href="{% url 'coffeeshop:starbucks-category' category='콜드 브루 커피' %}" class="dropdown-item">콜드 브루 커피</a>
+                            <a href="{% url 'coffeeshop:starbucks-category' category='브루드 커피' %}" class="dropdown-item">브루드 커피</a>
+                            <a href="{% url 'coffeeshop:starbucks-category' category='에스프레소' %}" class="dropdown-item">에스프레소</a>
+                            <a href="{% url 'coffeeshop:starbucks-category' category='프라푸치노' %}" class="dropdown-item">프라푸치노</a>
+                            <a href="{% url 'coffeeshop:starbucks-category' category='블렌디드' %}" class="dropdown-item">블렌디드</a>
+                            <a href="{% url 'coffeeshop:starbucks-category' category='스타벅스 피지오' %}" class="dropdown-item">스타벅스 피지오</a>
+                            <a href="{% url 'coffeeshop:starbucks-category' category='티(티바나)' %}" class="dropdown-item">티(티바나)</a>
+                            <a href="{% url 'coffeeshop:starbucks-category' category='기타 제조 음료' %}" class="dropdown-item">기타 제조 음료</a>
+                            <a href="{% url 'coffeeshop:starbucks-category' category='스타벅스 주스(병음료)' %}" class="dropdown-item">스타벅스 주스(병음료)</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -152,6 +156,7 @@
             {% endblock %}
 
             {% block content %}
+
             {% endblock %}
             </div>
         </div>

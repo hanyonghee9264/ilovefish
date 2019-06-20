@@ -4,26 +4,6 @@
 <div style="padding: 15px 0px 20px 20px;">
     <h4 class="lottemartdream normal coffee_sub_title">Starbucks Coffee Calories</h4>
 </div>
-
-<div class="nav nav-tabs" id="starbucks" role="tablist">
-    <a href="#allcoffee" class="nav-item nav-link active" id="all_coffee" data-toggle="tab" role="tab" aria-controls="all_coffee" aria-selected="true">
-        전체보기
-    </a>
-    <a href="#coldbrew" class="nav-item nav-link" id="cold_brew" data-toggle="tab" role="tab" aria-controls="coldbrew" aria-selected="false">
-        콜드브루
-    </a>
-    <a href="#brewd" class="nav-item nav-link" id="brewd" data-toggle="tab" role="tab" aria-controls="brewd" aria-selected="false">
-        브루드 커피
-    </a>
-    <a href="#esspresso" class="nav-item nav-link" id="esspresso" data-toggle="tab" role="tab" aria-controls="esspresso" aria-selected="false">
-        에스프레소
-    </a>
-    <a href="#frappuccino" class="nav-item nav-link" id="frappuccino" data-toggle="tab" role="tab" aria-controls="frappuccino" aria-selected="false">
-        프라푸치노
-    </a>
-</div>
-
-<div class="tab-content" id="starbucksContent">
 <!--Card deck -->
 <div class="card-deck lottemartdream">
     {% for detail in details %}
@@ -34,7 +14,7 @@
                         <h5 class="card-title w400 coffee_name" style="margin:0;">{{ detail.name }}</h5>
                         <span class="coffee_size" style="padding-top:0.1%; color:#4c4c4c;">{{ detail.coffee_size }}</span>
                         <span><p class="card-text coffee_info" style="padding-top:1.5%; color:#8a8a8a;">{{ detail.coffee_info }}</p></span>
-                        <ul class="coffee_info" style="padding:0.5%;">
+                        <ul class="coffee_info" style="padding-top:10px;">
                             <li class="card-text">칼로리(kcal): {{ detail.calorie }}</li>
                             <li class="card-text">포화지방(g): {{ detail.saturated_fat }}</li>
                             <li class="card-text">단백질(g): {{ detail.protein }}</li>
@@ -46,6 +26,5 @@
                 </div>
             {% endfor %}
     {% endfor %}
-</div>
 </div>
 {% endblock %}

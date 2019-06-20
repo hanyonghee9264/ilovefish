@@ -1,21 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
-from .models import Coffee, CoffeeCategory
+from .models import Coffee, CoffeeCategory, CoffeeImage
 
 
-def starbucks_list(request):
-    starbucks_details = Coffee.objects.all()
+def starbucks_total_list(request):
+    details = Coffee.objects.all()
     context = {
-        'details': starbucks_details,
+        'details': details,
     }
-    return render(request, 'coffeeshop/starbucks/starbucks_list.html', context)
+    return render(request, 'coffeeshop/starbucks_total_list.html', context)
 
 
-def starbucks_filtering(request):
-    coffee = Coffee.objects.all()
-    # coldbrew = Coffee.objects.filter(category__name__contains='콜드 브루 커피')
+def starbucks_category_coffee(request, category):
+    coffee = Coffee.objects.filter(category__name__contains=category)
     context = {
         'coffee': coffee,
-        'coldbrew': coldbrew,
     }
-    return render(request, 'coffeeshop/starbucks/starbucks_coldbrew.html', context)
+    return render(request, 'coffeeshop/starbucks_category_coffee.html', context)
