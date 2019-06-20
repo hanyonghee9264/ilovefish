@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="padding: 15px 0px 20px 20px;">
+    <h4 class="lottemartdream normal coffee_sub_title">Starbucks Coffee Calories</h4>
+</div>
+<!--Card deck -->
+<div class="card-deck lottemartdream">
+    {% for coffees in coffee %}
+            {% for image in coffees.coffeeimage_set.all %}
+                <div class="card mb-3 tab-pane fade show active" id="allcoffee" role="tabpanel" aria-labelledby="all_coffee" style="min-width: 16rem;">
+                    <img src="{{ image.location.url }}" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title w400 coffee_name" style="margin:0;">{{ coffees.name }}</h5>
+                        <span class="coffee_size" style="padding-top:0.1%; color:#4c4c4c;">{{ coffees.coffee_size }}</span>
+                        <span><p class="card-text coffee_info" style="padding-top:1.5%; color:#8a8a8a;">{{ coffees.coffee_info }}</p></span>
+                        <ul class="coffee_info" style="padding:0.5%;">
+                            <li class="card-text">칼로리(kcal): {{ coffees.calorie }}</li>
+                            <li class="card-text">포화지방(g): {{ coffees.saturated_fat }}</li>
+                            <li class="card-text">단백질(g): {{ coffees.protein }}</li>
+                            <li class="card-text left">나트륨(mg): {{ coffees.sodium }}</li>
+                            <li class="card-text left">당류(g): {{ coffees.sugars }}</li>
+                            <li class="card-text left">카페인(g): {{ coffees.caffeine }}</li>
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+    {% endfor %}
+</div>
+{% endblock %}
