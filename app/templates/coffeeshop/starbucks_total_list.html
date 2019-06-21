@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <div style="padding: 15px 0px 20px 20px;">
     <h4 class="lottemartdream normal coffee_sub_title">Starbucks Coffee Calories</h4>
 </div>
+
+<div class="form-group lottemartdream">
+    <select id="sell" class="form-control" onchange="location=this.value;" style="max-width:35%; height:25px;">
+        <option selected>옵션 선택 하기</option>
+        <option value="?calorie=high" class="calorie-high">칼로리 높은순으로</option>
+        <option value="?calorie=low" class="calorie-low">칼로리 낮은순으로</option>
+    </select>
+</div>
+
 <!--Card deck -->
 <div class="card-deck lottemartdream">
     {% for detail in details %}

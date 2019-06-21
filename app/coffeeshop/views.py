@@ -5,10 +5,25 @@ from .models import Coffee, CoffeeCategory, CoffeeImage
 
 def starbucks_total_list(request):
     details = Coffee.objects.all()
-    context = {
-        'details': details,
-    }
-    return render(request, 'coffeeshop/starbucks_total_list.html', context)
+
+    # request.session['calorie'] = 'calorie'
+
+    # url의 쿼리스트링을 가져옴. 없는 경우 None을 리턴
+    calorie = request.GET.get('calorie', 'None')
+
+    if calorie == 'high':
+        details = Coffee.objects.all().order_by('-calorie')
+        return render(request, 'coffeeshop/starbucks_total_list.html', {'details': details})
+
+    elif calorie == 'low':
+        details = Coffee.objects.all().order_by('calorie')
+        return render(request, 'coffeeshop/starbucks_total_list.html', {'details': details})
+
+    else:
+        context = {
+            'details': details,
+        }
+        return render(request, 'coffeeshop/starbucks_total_list.html', context)
 
 
 def starbucks_category_coffee(request, category):
