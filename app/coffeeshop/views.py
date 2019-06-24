@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 
 from .models import Coffee, CoffeeCategory, CoffeeImage
@@ -6,10 +7,20 @@ from .models import Coffee, CoffeeCategory, CoffeeImage
 def starbucks_total_list(request):
     details = Coffee.objects.all()
 
-    # request.session['calorie'] = 'calorie'
+    # pagination (전체보기 적용)
+    paginator = Paginator(details, 6)
+
+    page = request.GET.get('page')
+
+    try:
+        details = paginator.page(page)
+    except PageNotAnInteger:
+        details = paginator.page(1)
+    except EmptyPage:
+        details = paginator.page(paginator.num_pages)
 
     # url의 쿼리스트링을 가져옴. 없는 경우 None을 리턴
-    calorie = request.GET.get('calorie', 'None')
+    calorie = request.GET.get('calorie')
 
     if calorie == 'high':
         details = Coffee.objects.all().order_by('-calorie')
@@ -19,11 +30,10 @@ def starbucks_total_list(request):
         details = Coffee.objects.all().order_by('calorie')
         return render(request, 'coffeeshop/starbucks_total_list.html', {'details': details})
 
-    else:
-        context = {
-            'details': details,
-        }
-        return render(request, 'coffeeshop/starbucks_total_list.html', context)
+    context = {
+        'details': details,
+    }
+    return render(request, 'coffeeshop/starbucks_total_list.html', context)
 
 
 def starbucks_category_coffee(request, category):
