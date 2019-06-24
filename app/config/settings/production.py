@@ -8,7 +8,12 @@ WSGI_APPLICATION = 'config.wsgi.production.application'
 
 secrets = json.load(open(os.path.join(SECRETS_DIR, 'production.json')))
 
-ALLOWED_HOSTS = secrets['ALLOWED_HOSTS']
+ALLOWED_HOSTS = [
+    '.amazonaws.com',
+    'coffeecalorie.shop',
+    'www.coffeecalorie.shop',
+    'api.coffeecalorie.shop'
+]
 
 DATABASES = secrets['DATABASES']
 
