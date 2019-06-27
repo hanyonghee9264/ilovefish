@@ -4,6 +4,8 @@ server {
 # /etc/nginx/sites-available/
 server {
     listen 80;
+    listen 443;
+
     server_name coffeecalorie.shop www.coffeecalorie.shop api.coffeecalorie.shop;
 
     charset utf-8;
@@ -22,5 +24,10 @@ server {
     }
     location /media/ {
         alias /srv/projects/.media/;
+    }
+
+    # https 리다이렉트
+    if ($http_x_forwarded_proto = 'http') {
+        return 301 https://$host$request_uri;
     }
 }
