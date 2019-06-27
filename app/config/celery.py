@@ -19,13 +19,11 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 app.conf.update(
-    CELERY_BROKER_URL='redis://localhost:6379/0',
     CELERY_TASK_SERIALIZER='json',
     CELERY_ACCEPT_CONTENT=['application/json'],
     CELERY_RESULT_SERIALIZER='json',
     CELERY_TIMEZONE='Asia/Seoul',
     CELERY_ENABLE_UTC=False,
-    CELERY_RESULT_BACKEND='redis://localhost:6379/0',
 )
 app.conf.beat_schedule = {
     'add-first-of-every-months': {
