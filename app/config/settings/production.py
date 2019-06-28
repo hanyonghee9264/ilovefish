@@ -1,4 +1,6 @@
 import requests
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 from .base import *
 
@@ -30,6 +32,12 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Seoul' #Celery beat가 스케줄러이기 때문에 시간에 대한 정의를 해야함
+
+# Sentry
+sentry_sdk.init(
+    dsn=secrets['SENTRY_DSN'],
+    integrations=[DjangoIntegration()]
+)
 
 # django-storages
 DEFAULT_FILE_STORAGE = 'config.storages.MediaStorage'
