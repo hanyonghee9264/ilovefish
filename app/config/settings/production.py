@@ -20,18 +20,19 @@ ALLOWED_HOSTS = [
 DATABASES = secrets['DATABASES']
 
 # Celery [로컬]
-# CELERY_BROKER_URL = 'redis://localhost:6379/0'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
 
 # Celery + redis
-CELERY_BROKER_URL = 'redis://' + AWS_ELASTIC_CACHE
-CELERY_RESULT_BACKEND = 'redis://' + AWS_ELASTIC_CACHE
+# CELERY_BROKER_URL = 'redis://' + AWS_ELASTIC_CACHE
+# CELERY_RESULT_BACKEND = 'redis://' + AWS_ELASTIC_CACHE
 
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Seoul' #Celery beat가 스케줄러이기 때문에 시간에 대한 정의를 해야함
+BROKER_HEARTBEAT=0
 
 # Sentry
 sentry_sdk.init(
