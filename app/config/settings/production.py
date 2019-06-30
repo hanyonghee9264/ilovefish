@@ -1,5 +1,6 @@
 import requests
 import sentry_sdk
+from sentry_sdk.integrations.celery import CeleryIntegration
 from sentry_sdk.integrations.django import DjangoIntegration
 
 from .base import *
@@ -39,6 +40,13 @@ sentry_sdk.init(
     dsn=secrets['SENTRY_DSN'],
     integrations=[DjangoIntegration()]
 )
+
+# Sentry celery
+sentry_sdk.init(
+    dsn=secrets['SENTRY_DSN'],
+    integrations=[CeleryIntegration()]
+)
+
 
 # django-storages
 DEFAULT_FILE_STORAGE = 'config.storages.MediaStorage'
