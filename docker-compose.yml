@@ -1,22 +1,6 @@
 version: '3'
 
 services:
-  # selenium hub
-  hub:
-    image: selenium/hub
-    ports:
-      - "4444:4444"
-  # chrome hub
-  chrome:
-    image: selenium/node-chrome
-    environment:
-      - HUB_PORT_4444_TCP_ADDR=hub
-      - HUB_PORT_4444_TCP_PORT=4444
-    ports:
-      - "5900:5900"
-    depends_on:
-      - hub
-
   # PostgreSQL database
   db:
     image: postgres
@@ -41,15 +25,11 @@ services:
       - DJANGO_DB_PASSWORD=samplesecret
       - DJANGO_SECRET_KEY=dev_secret_key
     ports:
-      - "7000:80"
+      - "8000:8000"
     depends_on:
-      - chrome
-      - hub
       - db
     links:
       - db:postgres
-      - chrome
-      - hub
     tty: true
     command:
       - bash
