@@ -1,12 +1,6 @@
 version: 1
 task_definition:
   services:
-    hub:
-      cpu_shares: 100
-      mem_limit: 208435456
-    chrome:
-      cpu_shares: 100
-      mem_limit: 208435456
     db:
       cpu_shares: 100
       mem_limit: 208435456
