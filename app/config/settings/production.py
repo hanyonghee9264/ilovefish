@@ -21,13 +21,13 @@ ALLOWED_HOSTS = [
 DATABASES = secrets['DATABASES']
 
 # Celery [로컬]
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
 
 # Celery + redis
-# CELERY_BROKER_URL = 'redis://' + AWS_ELASTIC_CACHE
-# CELERY_RESULT_BACKEND = 'redis://' + AWS_ELASTIC_CACHE
+CELERY_BROKER_URL = 'redis://' + AWS_ELASTIC_CACHE
+CELERY_RESULT_BACKEND = 'redis://' + AWS_ELASTIC_CACHE
 
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
