@@ -1,16 +1,6 @@
 version: '3'
 
 services:
-  # PostgreSQL database
-  db:
-    image: postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=coffeecalorie
-      - POSTGRES_USER=hanyonghee
-      - POSTGRES_PASSWORD=samplesecret
-
   # django web server
   django:
     build:
@@ -38,8 +28,3 @@ services:
         python /srv/projects/app/manage.py migrate
         supervisord -n
         redis-server
-
-# 최상위 볼륨 키 아래 항목은 비어있을수 있다
-# local driver 사용
-volumes:
-  postgres_data: {}
