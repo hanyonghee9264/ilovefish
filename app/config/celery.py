@@ -28,7 +28,7 @@ app.conf.update(
 app.conf.beat_schedule = {
     'add-first-of-every-months': {
         'task': 'starbucks_crawling',
-        'schedule': crontab(minute='*/2'),  # 30분마다
+        'schedule': crontab(minute='*/5'),  # 5분마다
         'args': (),
     },
     'add-first-of-every-month': {
