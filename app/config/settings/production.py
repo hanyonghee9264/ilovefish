@@ -13,6 +13,7 @@ secrets = json.load(open(os.path.join(SECRETS_DIR, 'production.json')))
 
 ALLOWED_HOSTS = [
     '.amazonaws.com',
+    'localhost',
 ]
 
 DATABASES = secrets['DATABASES']
