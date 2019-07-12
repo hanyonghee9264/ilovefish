@@ -58,14 +58,6 @@ AWS_S3_REGION_NAME = 'ap-northeast-2'
 # s3
 AWS_DEFAULT_ACL = None
 
-
-# Health Check 도메인을 허용하는 코드 [ECS]
-try:
-    EC2_IP = requests.get('http://169.254.169.254/latest/meta-data/local-ipv4').text
-    ALLOWED_HOSTS.append(EC2_IP)
-except requests.exceptions.RequestException:
-    pass
-
 # 로그폴더 생성
 LOG_DIR = os.path.join(ROOT_DIR, '.log')
 # 로그 폴더가 존재하지 않으면 폴더 생성
