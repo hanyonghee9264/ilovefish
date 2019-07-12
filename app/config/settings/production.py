@@ -12,7 +12,7 @@ WSGI_APPLICATION = 'config.wsgi.production.application'
 secrets = json.load(open(os.path.join(SECRETS_DIR, 'production.json')))
 
 ALLOWED_HOSTS = [
-    '.amazonaws.com',
+    '.elasticbeanstalk.com',
     'localhost',
 ]
 
