@@ -19,7 +19,7 @@ def starbucks_crawling():
     now_date = datetime.datetime.now().strftime('%Y-%m-%d')
 
     crawling_result = f'{now_date} 에 대한 크롤링 완료 메세지'
-    to_email = 'hanyonghee92@gmail.com'
+    to_email = 'hanyonghee9264@gmail.com'
 
     email = EmailMessage(crawling_result, message, to=[to_email])
     email.send()
