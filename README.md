@@ -98,5 +98,4 @@ sentry-sdk<0.9.3
   "AWS_STORAGE_BUCKET_NAME" : "<AWS_STORAGE_BUCKET_NAME>",
 
   "SENTRY_DSN" : "https://<sentry_Client_Keys>"
-
 ```
