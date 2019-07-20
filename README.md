@@ -82,6 +82,8 @@ sentry-sdk<0.9.3
 ```
 
 ---
+
+.secrets/production.json
 ```
 "DATABASES": {
     "default": {
