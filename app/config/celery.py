@@ -31,11 +31,11 @@ app.conf.beat_schedule = {
     #     'schedule': crontab(minute='*/25'),  # 25분마다
     #     'args': (),
     # },
-    'add-first-of-every-month': {
-        'task': 'starbucks_crawling',
-        'schedule': crontab(0, 0, day_of_month='1'),  # 매월 1일에 실행
-        'args': (),
-    },
+    # 'add-first-of-every-month': {
+    #     'task': 'starbucks_crawling',
+    #     'schedule': crontab(0, 0, day_of_month='1'),  # 매월 1일에 실행
+    #     'args': (),
+    # },
 }
 
 
