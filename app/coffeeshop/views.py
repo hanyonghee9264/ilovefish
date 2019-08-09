@@ -50,8 +50,7 @@ def starbucks_category_coffee(request, category):
         coffee = Coffee.objects.filter(category__name__contains=category).order_by('calorie')
         return render(request, 'coffeeshop/starbucks_category_coffee.html', {'coffee': coffee})
 
-    else:
-        context = {
-            'coffee': coffee,
-        }
-        return render(request, 'coffeeshop/starbucks_category_coffee.html', context)
+    context = {
+        'coffee': coffee,
+    }
+    return render(request, 'coffeeshop/starbucks_category_coffee.html', context)
