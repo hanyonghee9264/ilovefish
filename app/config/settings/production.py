@@ -42,10 +42,10 @@ sentry_sdk.init(
 )
 
 # Sentry celery
-sentry_sdk.init(
-    dsn=secrets['SENTRY_DSN'],
-    integrations=[CeleryIntegration()]
-)
+# sentry_sdk.init(
+#     dsn=secrets['SENTRY_DSN'],
+#     integrations=[CeleryIntegration()]
+# )
 
 
 # django-storages
