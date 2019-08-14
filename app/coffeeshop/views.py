@@ -38,7 +38,6 @@ def starbucks_total_list(request):
 
 def starbucks_category_coffee(request, category):
     coffee = Coffee.objects.filter(category__name__contains=category)
-
     # url의 쿼리스트링을 가져옴. 없는 경우 None을 리턴
     calorie = request.GET.get('calorie', 'None')
 
