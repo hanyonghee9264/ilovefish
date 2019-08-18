@@ -21,6 +21,7 @@ class CoffeeCategory(models.Model):
 class Coffee(models.Model):
     COFFEESHOP_LIST = (
         ('STARBUCKS', 'Starbucks'),
+        ('ATWOSOMEPLACE', 'ATwosomePlace'),
     )
     category = models.ForeignKey(
         CoffeeCategory,
@@ -30,14 +31,14 @@ class Coffee(models.Model):
     )
     coffeeshop_list = models.CharField(max_length=20, choices=COFFEESHOP_LIST)
     name = models.CharField('커피', max_length=100)
-    coffee_info = models.TextField('커피소개', blank=True, )
-    coffee_size = models.CharField('커피사이즈', max_length=80, blank=True)
-    calorie = models.DecimalField('칼로리', blank=True, max_digits=5, decimal_places=1)
-    saturated_fat = models.DecimalField('포화지방', blank=True, max_digits=5, decimal_places=1)
-    protein = models.DecimalField('단백질', blank=True, max_digits=5, decimal_places=1)
-    sodium = models.DecimalField('나트룸', blank=True, max_digits=5, decimal_places=1)
-    sugars = models.DecimalField('당류', blank=True, max_digits=5, decimal_places=1)
-    caffeine = models.DecimalField('카페인', blank=True, max_digits=5, decimal_places=1)
+    coffee_info = models.TextField('커피소개', blank=True,)
+    coffee_size = models.CharField('커피사이즈', max_length=80, blank=True,)
+    calorie = models.CharField('칼로리', max_length=80, blank=True,)
+    saturated_fat = models.CharField('포화지방', max_length=80, blank=True,)
+    protein = models.CharField('단백질', max_length=80, blank=True,)
+    sodium = models.CharField('나트룸', max_length=80, blank=True,)
+    sugars = models.CharField('당류', max_length=80, blank=True,)
+    caffeine = models.CharField('카페인', max_length=80, blank=True,)
     created_at = models.DateTimeField('등록일', auto_now_add=True)
 
     def __str__(self):
