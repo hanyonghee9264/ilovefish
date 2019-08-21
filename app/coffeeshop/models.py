@@ -5,7 +5,7 @@ def coffee_path(instance, filename):
     starbucks = 'starbucks'
     twosome = 'ATwosomePlace'
 
-    if instance.coffeeshop_list == 'STARTBUCKS':
+    if instance.coffeeshop_list == 'STARBUCKS':
         starbucks_path = f'{starbucks}/{instance.coffee.name}.jpg'
         return starbucks_path
     elif instance.coffeeshop_list == 'ATWOSOMEPLACE':
