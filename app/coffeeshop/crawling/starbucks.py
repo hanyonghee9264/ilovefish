@@ -50,7 +50,7 @@ class Starbucks:
         # Docker 환경에서 chromedriver linux로 변경
         # 로컬 환경에선 Mac OS
         if 'CHROMEDRIVER_VERSION' in os.environ:
-            chrome_driver_linux = os.path.join(CHROME_DRIVER_DIR, 'chromedriver_linux')
+            chrome_driver_linux = os.path.join(CHROME_DRIVER_DIR, 'chromedriver_76_linux')
             driver = webdriver.Chrome(chrome_driver_linux, chrome_options=chrome_options)
         else:
             CHROME_DRIVER = os.path.join(CHROME_DRIVER_DIR, 'chromedriver_76')
