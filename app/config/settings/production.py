@@ -16,13 +16,14 @@ ALLOWED_HOSTS = [
     'coffeecalorie.shop',
     'www.coffeecalorie.shop',
     'api.coffeecalorie.shop',
+    'localhost',
 ]
 
 DATABASES = secrets['DATABASES']
 
 # Celery [로컬]
-# CELERY_BROKER_URL = 'redis://localhost:6379/0'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
 
 # Celery + redis

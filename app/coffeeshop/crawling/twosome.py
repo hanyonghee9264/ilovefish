@@ -39,7 +39,7 @@ class Twosome:
     @classmethod
     def get_coffee_info(cls):
         chrome_options = Options()
-        # chrome_options.add_argument('headless')
+        chrome_options.add_argument('headless')
         chrome_options.add_argument('disable-gpu')
         # Chromedriver DevToolsActivePort file doesn't exist 해결
         chrome_options.add_argument('--no-sandbox')

@@ -19,7 +19,6 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 app.conf.update(
-    # CELERY_BROKER_URL='redis://localhost:6379/0',
     CELERY_TASK_SERIALIZER='json',
     CELERY_ACCEPT_CONTENT=['application/json'],
     CELERY_RESULT_SERIALIZER='json',
@@ -27,16 +26,16 @@ app.conf.update(
     CELERY_ENABLE_UTC=False,
 )
 app.conf.beat_schedule = {
-    'add-first-of-every-months': {
-        'task': 'starbucks_crawling',
-        'schedule': crontab(minute='*/5'),  # 5분마다
-        'args': (),
-    },
-    'add-first-of-every-month': {
-        'task': 'twosome_crawling',
-        'schedule': crontab(minute='*/5'),  # 25분마다
-        'args': (),
-    },
+    # 'add-first-of-every-months': {
+    #     'task': 'starbucks_crawling',
+    #     'schedule': crontab(minute='*/1'),  # 5분마다
+    #     'args': (),
+    # },
+    # 'add-first-of-every-month': {
+    #     'task': 'twosome_crawling',
+    #     'schedule': crontab(minute='*/1'),  # 25분마다
+    #     'args': (),
+    # },
     # 'add-first-of-every-month': {
     #     'task': 'starbucks_crawling',
     #     'schedule': crontab(0, 0, day_of_month='1'),  # 매월 1일에 실행
