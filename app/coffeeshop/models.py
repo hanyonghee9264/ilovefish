@@ -3,8 +3,14 @@ from django.db import models
 
 def coffee_path(instance, filename):
     starbucks = 'starbucks'
-    star_path = f'{starbucks}/{instance.coffee.name}.jpg'
-    return star_path
+    twosome = 'ATwosomePlace'
+
+    if instance.coffeeshop_list == 'STARTBUCKS':
+        starbucks_path = f'{starbucks}/{instance.coffee.name}.jpg'
+        return starbucks_path
+    elif instance.coffeeshop_list == 'ATWOSOMEPLACE':
+        twosome_path = f'{twosome}/{instance.coffee.name}.jpg'
+        return twosome_path
 
 
 class CoffeeCategory(models.Model):
