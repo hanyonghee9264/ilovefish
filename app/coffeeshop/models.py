@@ -5,10 +5,10 @@ def coffee_path(instance, filename):
     starbucks = 'starbucks'
     twosome = 'ATwosomePlace'
 
-    if instance.coffeeshop_list == 'STARBUCKS':
+    if instance.coffee.coffeeshop_list == 'STARBUCKS':
         starbucks_path = f'{starbucks}/{instance.coffee.name}.jpg'
         return starbucks_path
-    elif instance.coffeeshop_list == 'ATWOSOMEPLACE':
+    elif instance.coffee.coffeeshop_list == 'ATWOSOMEPLACE':
         twosome_path = f'{twosome}/{instance.coffee.name}.jpg'
         return twosome_path
 
@@ -39,7 +39,8 @@ class Coffee(models.Model):
     name = models.CharField('커피', max_length=100)
     coffee_info = models.TextField('커피소개', blank=True,)
     coffee_size = models.CharField('커피사이즈', max_length=80, blank=True,)
-    calorie = models.CharField('칼로리', max_length=80, blank=True,)
+    calorie = models.IntegerField('칼로리', blank=True, null=True)
+    calorie_large = models.IntegerField('라지사이즈칼로리', blank=True, null=True)
     saturated_fat = models.CharField('포화지방', max_length=80, blank=True,)
     protein = models.CharField('단백질', max_length=80, blank=True,)
     sodium = models.CharField('나트룸', max_length=80, blank=True,)

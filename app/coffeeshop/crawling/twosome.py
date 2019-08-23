@@ -1,4 +1,5 @@
 import os
+import re
 import time
 import urllib.request
 
@@ -14,7 +15,7 @@ from config.settings.base import MEDIA_ROOT, CHROME_DRIVER_DIR
 from ..models import CoffeeCategory, CoffeeImage, Coffee
 
 # 크롤링 결과 담기 위한 dict
-
+# 크롤링 결과 후 SMTP
 dict_log = {
     "updated_coffee": {
         "투썸플레이스": {"num": 0, "list": []},
@@ -127,8 +128,6 @@ class Twosome:
                     coffee_table = detail.select_one('dl.nutrition > dd > ul')
                     # 커피 사이즈
                     coffee_size = coffee_table.select_one('li.total-g > span').get_text(strip=True)
-                    # 커피 칼로리
-                    coffee_calorie = coffee_table.select_one('li:nth-of-type(3) > span').get_text(strip=True)
                     # 커피 포화지방
                     coffee_fats = coffee_table.select_one('li:nth-of-type(6) > span').get_text(strip=True)
                     # 커피 단백질
@@ -138,36 +137,64 @@ class Twosome:
                     # 커피 당류
                     coffee_sugar = coffee_table.select_one('li:nth-of-type(4) > span').get_text(strip=True)
 
-                    coffee, is_coffee = Coffee.objects.get_or_create(
-                        coffeeshop_list='ATWOSOMEPLACE',
-                        category=category,
-                        name=coffee_name,
-                        coffee_info=coffee_infos,
-                        coffee_size=coffee_size,
-                        calorie=coffee_calorie,
-                        saturated_fat=coffee_fats,
-                        protein=coffee_protein,
-                        sodium=coffee_sodium,
-                        sugars=coffee_sugar,
-                    )
+                    # 커피 칼로리
+                    coffee_calorie = coffee_table.select_one('li:nth-of-type(3) > span').get_text(strip=True)
 
-                    ATWOSOME_DIR = os.path.join(MEDIA_ROOT, '.twosome')
-                    ATWOSOME_IMAGE_DIR = os.path.join(ATWOSOME_DIR, f'{coffee_name}.jpg')
-                    if not os.path.exists(ATWOSOME_DIR):
-                        os.makedirs(ATWOSOME_DIR, exist_ok=True)
-                    if is_coffee:
-                        try:
-                            urllib.request.urlretrieve(coffee_image, ATWOSOME_IMAGE_DIR)
-                            f = open(os.path.join(ATWOSOME_DIR, f'{coffee_name}.jpg'), 'rb')
-                            CoffeeImage.objects.get_or_create(
-                                location=File(f),
-                                coffee=coffee,
+                    # 칼로리 숫자만 뽑기
+                    kcal_int = re.findall('\d+', coffee_calorie)
+                    # 칼로리 str 타입 => int 타입 형변환
+                    kcal_type_change = list(map(int, kcal_int))
+
+                    # 칼로리 2개 들어가 있는 것들
+                    if len(kcal_type_change) == 2:
+                        kcal_1 = kcal_type_change[0]
+                        kcal_2 = kcal_type_change[1]
+
+                        coffee, is_coffee = Coffee.objects.get_or_create(
+                            coffeeshop_list='ATWOSOMEPLACE',
+                            category=category,
+                            name=coffee_name,
+                            coffee_info=coffee_infos,
+                            coffee_size=coffee_size,
+                            calorie=kcal_1,
+                            calorie_large=kcal_2,
+                            saturated_fat=coffee_fats,
+                            protein=coffee_protein,
+                            sodium=coffee_sodium,
+                            sugars=coffee_sugar,
+                        )
+                    else:
+                        for calorie in kcal_type_change:
+                            coffee, is_coffee = Coffee.objects.get_or_create(
+                                coffeeshop_list='ATWOSOMEPLACE',
+                                category=category,
+                                name=coffee_name,
+                                coffee_info=coffee_infos,
+                                coffee_size=coffee_size,
+                                calorie=calorie,
+                                saturated_fat=coffee_fats,
+                                protein=coffee_protein,
+                                sodium=coffee_sodium,
+                                sugars=coffee_sugar,
                             )
-                            f.close()
-                            dict_log["updated_coffee"]["투썸플레이스"]["list"].append(coffee_name)
-                            dict_log["updated_coffee"]["투썸플레이스"]["num"] += 1
-                        except FileExistsError:
-                            print('이미 존재하는 파일')
+
+                        ATWOSOME_DIR = os.path.join(MEDIA_ROOT, '.twosome')
+                        ATWOSOME_IMAGE_DIR = os.path.join(ATWOSOME_DIR, f'{coffee_name}.jpg')
+                        if not os.path.exists(ATWOSOME_DIR):
+                            os.makedirs(ATWOSOME_DIR, exist_ok=True)
+                        if is_coffee:
+                            try:
+                                urllib.request.urlretrieve(coffee_image, ATWOSOME_IMAGE_DIR)
+                                f = open(os.path.join(ATWOSOME_DIR, f'{coffee_name}.jpg'), 'rb')
+                                CoffeeImage.objects.get_or_create(
+                                    location=File(f),
+                                    coffee=coffee,
+                                )
+                                f.close()
+                                dict_log["updated_coffee"]["투썸플레이스"]["list"].append(coffee_name)
+                                dict_log["updated_coffee"]["투썸플레이스"]["num"] += 1
+                            except FileExistsError:
+                                print('이미 존재하는 파일')
                     time.sleep(0.8)
         driver.close()
 
