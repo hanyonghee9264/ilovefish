@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="padding: 15px 0px 20px 20px;">
+    <h4 class="lottemartdream normal coffee_sub_title">A Twosome Place Coffee Calories</h4>
+</div>
+
+<!-- select box -->
+<div class="form-group lottemartdream">
+    <select id="sell" class="form-control" onchange="location=this.value;" style="max-width:50%; max-height:30%;">
+        <option selected value="{% url 'coffeeshop:twosome' %}">옵션 선택 하기</option>
+        <option value="?calorie=high" class="calorie-high">칼로리 높은순으로</option>
+        <option value="?calorie=low" class="calorie-low">칼로리 낮은순으로</option>
+    </select>
+</div>
+
+<!--Card deck -->
+<div class="card-deck lottemartdream">
+    {% for detail in twosome %}
+            {% for image in detail.coffeeimage_set.all %}
+                <div class="card mb-3 tab-pane fade show active" id="allcoffee" role="tabpanel" aria-labelledby="all_coffee" style="min-width: 20rem; max-width: 20rem;">
+                    <img src="{{ image.location.url }}" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title w400 coffee_name" style="margin:0;">{{ detail.name }}</h5>
+                        <span class="coffee_size" style="padding-top:0.1%; color:#4c4c4c;">{{ detail.coffee_size }}</span>
+                        <span><p class="card-text coffee_info" style="padding-top:1.5%; color:#8a8a8a;">{{ detail.coffee_info }}</p></span>
+                        <ul class="coffee_info" style="padding-top:10px;">
+                            <li class="card-text">칼로리_레귤러(kcal): {{ detail.calorie }}</li>
+                            {% if detail.calorie_large is not None %}
+                            <li class="card-text">칼로리_라지(kcal): {{ detail.calorie_large }}</li>
+                            {% endif %}
+                            <li class="card-text">포화지방(g/%): {{ detail.saturated_fat }}</li>
+                            <li class="card-text">단백질(g/%): {{ detail.protein }}</li>
+                            <li class="card-text left">나트륨(mg/%): {{ detail.sodium }}</li>
+                            <li class="card-text left">당류(g): {{ detail.sugars }}</li>
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+    {% endfor %}
+</div>
+
+<nav style="text-align: center;">
+    <ul class="pagination" style="display:inline-block;">
+        {% if twosome.has_previous %}
+        <li class="page-item">
+            <a href="?page={{ twosome.previous_page_number }}&calorie=" class="page-link">이전</a>
+        </li>
+        {% endif %}
+
+        <li class="page-item active">
+            <span href="#" class="page-link">
+                {{ twosome.number }} of {{ twosome.paginator.num_pages }}
+            </span>
+        </li>
+
+        {% if twosome.has_next %}
+        <li class="page-item">
+            <a href="?page={{ twosome.next_page_number }}" class="page-link">다음</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock %}
