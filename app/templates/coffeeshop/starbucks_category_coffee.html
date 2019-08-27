@@ -18,7 +18,7 @@
 <div class="card-deck lottemartdream">
     {% for coffees in coffee %}
             {% for image in coffees.coffeeimage_set.all %}
-                <div class="card mb-3 tab-pane fade show active" id="allcoffee" role="tabpanel" aria-labelledby="all_coffee" style="min-width: 16rem;">
+                <div class="card mb-3 tab-pane fade show active" id="allcoffee" role="tabpanel" aria-labelledby="all_coffee" style="min-width: 20rem; max-width: 20rem;">
                     <img src="{{ image.location.url }}" alt="" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title w400 coffee_name" style="margin:0;">{{ coffees.name }}</h5>
