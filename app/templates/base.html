@@ -153,7 +153,10 @@
                         <a href="{% url 'coffeeshop:twosome' %}" class="nav-link w300 dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">투썸플레이스</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a href="{% url 'coffeeshop:twosome' %}" class="dropdown-item">전체보기</a>
-
+                            <a href="{% url 'coffeeshop:twosome-category' category='에스프레소' %}" class="dropdown-item">에스프레소</a>
+                            <a href="{% url 'coffeeshop:twosome-category' category='블렌디드' %}" class="dropdown-item">블렌디드</a>
+                            <a href="{% url 'coffeeshop:twosome-category' category='티(TWG)' %}" class="dropdown-item">티(TWG)</a>
+                            <a href="{% url 'coffeeshop:twosome-category' category='기타' %}" class="dropdown-item">기타</a>
                         </div>
                     </li>
                   </ul>

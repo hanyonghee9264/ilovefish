@@ -8,4 +8,5 @@ urlpatterns = [
     path('starbucks/', views.starbucks_total_list, name='starbucks'),
     path('starbucks/<str:category>/', views.starbucks_category_coffee, name='starbucks-category'),
     path('twosomeplace/', views.twosome_total_list, name='twosome'),
+    path('twosomeplace/<str:category>/', views.twosome_category_coffee, name='twosome-category'),
 ]

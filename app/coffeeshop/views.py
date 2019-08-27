@@ -36,7 +36,7 @@ def starbucks_total_list(request):
 
 
 def starbucks_category_coffee(request, category):
-    coffee = Coffee.objects.filter(category__name__contains=category)
+    coffee = Coffee.objects.filter(coffeeshop_list='STARBUCKS').filter(category__name__contains=category)
     # url의 쿼리스트링을 가져옴. 없는 경우 None을 리턴
     calorie = request.GET.get('calorie', 'None')
 
@@ -55,7 +55,6 @@ def starbucks_category_coffee(request, category):
 
 
 # 투썸 커피 전체보기
-
 def twosome_total_list(request):
     twosome = Coffee.objects.filter(coffeeshop_list='ATWOSOMEPLACE')
 
@@ -85,3 +84,23 @@ def twosome_total_list(request):
         'twosome': twosome,
     }
     return render(request, 'coffeeshop/twosome_total_list.html', context)
+
+
+# 투썸 커피 카테고리
+def twosome_category_coffee(request, category):
+    coffee = Coffee.objects.filter(coffeeshop_list='ATWOSOMEPLACE').filter(category__name__contains=category)
+
+    calorie = request.GET.get('calorie', 'None')
+
+    if calorie == 'high':
+        coffee = Coffee.objects.filter(category__name__contains=category).order_by('-calorie')
+        return render(request, 'coffeeshop/twosome_category_coffee.html', {'coffee': coffee})
+
+    elif calorie == 'low':
+        coffee = Coffee.objects.filter(category__name__contains=category).order_by('calorie')
+        return render(request, 'coffeeshop/twosome_category_coffee.html', {'coffee': coffee})
+
+    context = {
+        'coffee': coffee,
+    }
+    return render(request, 'coffeeshop/twosome_category_coffee.html', context)
