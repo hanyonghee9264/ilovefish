@@ -140,6 +140,12 @@ class Twosome:
                     # 커피 칼로리
                     coffee_calorie = coffee_table.select_one('li:nth-of-type(3) > span').get_text(strip=True)
 
+                    # media/twosome 폴더 생성
+                    ATWOSOME_DIR = os.path.join(MEDIA_ROOT, '.twosome')
+                    ATWOSOME_IMAGE_DIR = os.path.join(ATWOSOME_DIR, f'{coffee_name}.jpg')
+                    if not os.path.exists(ATWOSOME_DIR):
+                        os.makedirs(ATWOSOME_DIR, exist_ok=True)
+
                     # 칼로리 숫자만 뽑기
                     kcal_int = re.findall('\d+', coffee_calorie)
                     # 칼로리 str 타입 => int 타입 형변환
@@ -163,6 +169,22 @@ class Twosome:
                             sodium=coffee_sodium,
                             sugars=coffee_sugar,
                         )
+                        # 중복 코드
+                        # 하나로 합칠 생각 [추후]
+                        if is_coffee:
+                            try:
+                                urllib.request.urlretrieve(coffee_image, ATWOSOME_IMAGE_DIR)
+                                f = open(os.path.join(ATWOSOME_DIR, f'{coffee_name}.jpg'), 'rb')
+                                CoffeeImage.objects.get_or_create(
+                                    location=File(f),
+                                    coffee=coffee,
+                                )
+                                f.close()
+                                dict_log["updated_coffee"]["투썸플레이스"]["list"].append(coffee_name)
+                                dict_log["updated_coffee"]["투썸플레이스"]["num"] += 1
+                            except FileExistsError:
+                                print('이미 존재하는 파일')
+
                     else:
                         for calorie in kcal_type_change:
                             coffee, is_coffee = Coffee.objects.get_or_create(
@@ -178,23 +200,19 @@ class Twosome:
                                 sugars=coffee_sugar,
                             )
 
-                        ATWOSOME_DIR = os.path.join(MEDIA_ROOT, '.twosome')
-                        ATWOSOME_IMAGE_DIR = os.path.join(ATWOSOME_DIR, f'{coffee_name}.jpg')
-                        if not os.path.exists(ATWOSOME_DIR):
-                            os.makedirs(ATWOSOME_DIR, exist_ok=True)
-                        if is_coffee:
-                            try:
-                                urllib.request.urlretrieve(coffee_image, ATWOSOME_IMAGE_DIR)
-                                f = open(os.path.join(ATWOSOME_DIR, f'{coffee_name}.jpg'), 'rb')
-                                CoffeeImage.objects.get_or_create(
-                                    location=File(f),
-                                    coffee=coffee,
-                                )
-                                f.close()
-                                dict_log["updated_coffee"]["투썸플레이스"]["list"].append(coffee_name)
-                                dict_log["updated_coffee"]["투썸플레이스"]["num"] += 1
-                            except FileExistsError:
-                                print('이미 존재하는 파일')
+                            if is_coffee:
+                                try:
+                                    urllib.request.urlretrieve(coffee_image, ATWOSOME_IMAGE_DIR)
+                                    f = open(os.path.join(ATWOSOME_DIR, f'{coffee_name}.jpg'), 'rb')
+                                    CoffeeImage.objects.get_or_create(
+                                        location=File(f),
+                                        coffee=coffee,
+                                    )
+                                    f.close()
+                                    dict_log["updated_coffee"]["투썸플레이스"]["list"].append(coffee_name)
+                                    dict_log["updated_coffee"]["투썸플레이스"]["num"] += 1
+                                except FileExistsError:
+                                    print('이미 존재하는 파일')
                     time.sleep(0.8)
         driver.close()
 
