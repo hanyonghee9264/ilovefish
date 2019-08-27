@@ -149,8 +149,12 @@
                             <a href="{% url 'coffeeshop:starbucks-category' category='스타벅스 주스(병음료)' %}" class="dropdown-item">스타벅스 주스(병음료)</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link w300">추후업데이트예정..</a>
+                    <li class="nav-item dropdown">
+                        <a href="{% url 'coffeeshop:twosome' %}" class="nav-link w300 dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">투썸플레이스</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a href="{% url 'coffeeshop:twosome' %}" class="dropdown-item">전체보기</a>
+
+                        </div>
                     </li>
                   </ul>
                 </div>
