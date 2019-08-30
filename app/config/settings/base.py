@@ -33,23 +33,12 @@ STATICFILES_DIRS = [
 # Templates
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
-# crontab production environ
-# CRONTAB_DJANGO_SETTINGS_MODULE = 'coffeeshop.settings.production'
-
 # Media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
 
 # Tool(Chrome_driver-Mac OS)
 CHROME_DRIVER_DIR = os.path.join(ROOT_DIR, '.tool')
-
-# Crontab
-# 매월 1일 12시에 자동
-# 로그 기록은 /tmp/cron.log 에 기록
-CRONJOBS = [
-    # ('0 0 1 * *', 'coffeeshop.cron.crawling', '>> ~/tmp/cron.log'),
-    # ('*/5 * * * *', 'coffeeshop.cron.crawling', '>> ~/tmp/cron.log'),
-]
 
 # Email 기능
 EMAIL_BACKEND = secrets['EMAIL_BACKEND']
@@ -64,15 +53,10 @@ DEFAULT_FROM_MAIL = secrets['DEFAULT_FROM_MAIL']
 # AWS ELASTIC CACHE
 # AWS_ELASTIC_CACHE = secrets['AWS_ELASTIC_CACHE']
 
-# CRONTAB_COMMAND_SUFFIX = '2>&1'
-
-
 # Application definition
 
 INSTALLED_APPS = [
     'coffeeshop',
-
-    'django_crontab',
 
     'django.contrib.admin',
     'django.contrib.auth',
