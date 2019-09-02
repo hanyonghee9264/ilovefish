@@ -26,8 +26,8 @@ class CoffeeCategory(models.Model):
 
 class Coffee(models.Model):
     COFFEESHOP_LIST = (
-        ('STARBUCKS', 'Starbucks'),
-        ('ATWOSOMEPLACE', 'ATwosomePlace'),
+        ('STARBUCKS', '스타벅스'),
+        ('ATWOSOMEPLACE', '투썸플레이스'),
     )
     category = models.ForeignKey(
         CoffeeCategory,
