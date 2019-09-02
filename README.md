@@ -2,7 +2,7 @@
 
 ### 프로젝트 소개
 
-기존의 프렌차이즈 커피점(스타벅스, 탐앤탐스 ...) 홈페이지에 커피에 대한 칼로리 정보를 확인하기 위해서
+기존의 프렌차이즈 커피점(스타벅스, 투썸플레이스  ...) 홈페이지에 커피에 대한 칼로리 정보를 확인하기 위해서
 
 1. 전체 메뉴 중 해당 메뉴클릭
 2. 원하는 커피메뉴 클릭
@@ -12,7 +12,7 @@
 
 ### 프로젝트 URL
 
-- [https://coffeecalorie.shop](https://coffeecalorie.shop){: target="_blank" }
+- [https://coffeecalorie.shop](https://coffeecalorie.shop)
 
 ### 프로젝트 개발환경 및 프로그램
 - AWS Elastic Beanstalk
