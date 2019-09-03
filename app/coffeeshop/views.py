@@ -104,3 +104,19 @@ def twosome_category_coffee(request, category):
         'coffee': coffee,
     }
     return render(request, 'coffeeshop/twosome_category_coffee.html', context)
+
+
+# 커피 검색기능
+def coffee_search_list(request):
+    coffee_list = Coffee.objects.all()
+
+    # GET request의 인자중에 search 값이 있으면 가져오고 없으면 빈문자열
+    keyword = request.GET.get('keyword', '')
+
+    if keyword:
+        coffee_list = coffee_list.filter(name__icontains=keyword)
+    context = {
+        'coffee_list': coffee_list,
+        'keyword': keyword,
+    }
+    return render(request, 'coffeeshop/coffee_search.html', context)
