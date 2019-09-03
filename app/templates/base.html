@@ -118,6 +118,17 @@
     nav > .pagination li {
       float: left;
     }
+
+    # 검색창 글씨 및 placeholder 색상
+   .search_font {
+
+    }
+    .search_font::placeholder {
+      color: #8b8c8e;
+      font-weight: 100;
+      font-size: 90%;
+    }
+
     </style>
 </head>
 <body>
@@ -160,6 +171,10 @@
                         </div>
                     </li>
                   </ul>
+                  <form action="{% url 'coffeeshop:calorie-search' %}" class="form-inline my-2 my-lg-0" method="get">
+                      <input type="text" class="form-control mr-sm-2 search_font" placeholder="커피명을 검색해보세요" aria-label="Search" name="keyword">
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
                 </div>
             </header>
             {% block slider %}
