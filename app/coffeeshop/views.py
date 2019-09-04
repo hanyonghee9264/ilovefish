@@ -110,11 +110,21 @@ def twosome_category_coffee(request, category):
 def coffee_search_list(request):
     coffee_list = Coffee.objects.all()
 
-    # GET request의 인자중에 search 값이 있으면 가져오고 없으면 빈문자열
+    # GET request의 인자중에 keyword 값이 있으면 가져오고 없으면 빈문자열
     keyword = request.GET.get('keyword', '')
 
     if keyword:
         coffee_list = coffee_list.filter(name__icontains=keyword)
+        # 검색어를 저장하기 위해서 non_keyword 라는 변수 생성
+        # non_keyword 는 해당 검색(keyword)에 없는 경우
+        # non_keyword를 통해 해당 검색어를 리턴해주기 위해 생성
+        non_keyword = request.GET['keyword']
+
+        if not coffee_list:
+            context = {
+                'non_keyword': non_keyword,
+            }
+            return render(request, 'coffeeshop/coffee_search.html', context)
     context = {
         'coffee_list': coffee_list,
         'keyword': keyword,
