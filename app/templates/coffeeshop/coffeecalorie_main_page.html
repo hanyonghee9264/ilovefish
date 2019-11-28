@@ -1,28 +1,7 @@
 {% extends 'base.html' %}
 {% block slider %}
     {% load static %}
-<div id="carouselslideshow" class="carousel slide" data-ride="carousel">
-
-    <!-- Indicators -->
-    <ul class="carousel-indicators">
-        <li data-target="#carouselslideshow" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselslideshow" data-slide-to="1"></li>
-        <li data-target="#carouselslideshow" data-slide-to="2"></li>
-    </ul>
-
-    <!-- The Slideshow -->
-    <div class="carousel-inner">
-        <div class="carousel-item active" data-interval="5000">
-            <img src="{% static 'main_slide_image_1.jpg' %}" class="slideimage" alt="">
-        </div>
-        <div class="carousel-item" data-interval="5000">
-            <img src="{% static 'main_slide_image_2.jpg' %}" class="slideimage" alt="">
-        </div>
-        <div class="carousel-item" data-interval="5000">
-            <img src="{% static 'main_slide_image_3.jpg' %}" class="slideimage" alt="">
-        </div>
-    </div>
-
+<div style="background-image:url(/static/images/background-image.jpg)"></div>
     <!-- Left and right controls -->
     <a href="#carouselslideshow" class="carousel-control-prev" data-slide="prev">
         <span class="carousel-control-prev-icon"></span>
