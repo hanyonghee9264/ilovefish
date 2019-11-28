@@ -26,11 +26,16 @@
       margin-right: auto;
       margin-left: auto;
     }
+    .container-center {
+      display: inline;
+      text-align: center;
+    }
 
     @media (min-width: 768px) {
     .container {
-        width: 750px;
-        }
+     width: 750px;
+
+      }
     }
     @media (min-width: 992px) {
      .container {
@@ -132,9 +137,6 @@
     }
 
     # 검색창 글씨 및 placeholder 색상
-   .search_font {
-
-    }
     .search_font::placeholder {
       color: #8b8c8e;
       font-weight: 100;
@@ -143,13 +145,13 @@
 
     </style>
 </head>
-<body style="background-image:url(/static/images/background-image.jpg)">
+<body style="background-image:url({% static 'background-image.jpg' %}); background-size: cover; position: relative; width: 100%;">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-lg-12">
+            <div class="col-12 col-lg-12" style="background-color: rgba(109, 97, 93, 0.2)">
             <header class="navbar navbar-expand-lg navbar-light lottemartdream">
                 <!-- Brand -->
-                <a href="{% url 'main-page' %}" class="navbar-brand normal w900 padding">Coffeecalorie</a>
+                <a href="{% url 'main-page' %}" class="navbar-brand normal w900 padding" style="color: #f7f7f7;">Coffeecalorie</a>
 
                 <!-- Button -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -158,10 +160,10 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                   <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
-                        <a href="{% url 'coffeeshop:starbucks' %}" class="nav-link w300 dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">스타벅스</a>
+                        <a href="{% url 'coffeeshop:starbucks' %}" class="nav-link w300 dropdown-toggle menu-color" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">스타벅스</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="{% url 'coffeeshop:starbucks' %}" class="dropdown-item">전체보기</a>
-                            <a href="{% url 'coffeeshop:starbucks-category' category='콜드 브루 커피' %}" class="dropdown-item">콜드 브루 커피</a>
+                            <a href="{% url 'coffeeshop:starbucks' %}" class="dropdown-item menu-color">전체보기</a>
+                            <a href="{% url 'coffeeshop:starbucks-category' category='콜드 브루 커피' %}" class="dropdown-item menu-color">콜드 브루 커피</a>
                             <a href="{% url 'coffeeshop:starbucks-category' category='브루드 커피' %}" class="dropdown-item">브루드 커피</a>
                             <a href="{% url 'coffeeshop:starbucks-category' category='에스프레소' %}" class="dropdown-item">에스프레소</a>
                             <a href="{% url 'coffeeshop:starbucks-category' category='프라푸치노' %}" class="dropdown-item">프라푸치노</a>
@@ -173,7 +175,7 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a href="{% url 'coffeeshop:twosome' %}" class="nav-link w300 dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">투썸플레이스</a>
+                        <a href="{% url 'coffeeshop:twosome' %}" class="nav-link w300 dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">투썸플레이스</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a href="{% url 'coffeeshop:twosome' %}" class="dropdown-item">전체보기</a>
                             <a href="{% url 'coffeeshop:twosome-category' category='에스프레소' %}" class="dropdown-item">에스프레소</a>
