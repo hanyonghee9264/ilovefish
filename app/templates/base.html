@@ -34,7 +34,6 @@
     @media (min-width: 768px) {
     .container {
      width: 750px;
-
       }
     }
     @media (min-width: 992px) {
@@ -142,61 +141,75 @@
       font-weight: 100;
       font-size: 90%;
     }
-
+    .image-cover {
+      position: relative;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      background-image: url({% static 'background-image.jpg' %});
+      text-align: center;
+      z-index: 9999;
+    }
     </style>
 </head>
-<body style="background-image:url({% static 'background-image.jpg' %}); background-size: cover; max-width: 100%; max-height: 100%;">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-lg-12" style="background-color: rgba(109, 97, 93, 0.2)">
-            <header class="navbar navbar-expand-lg navbar-light lottemartdream">
-                <!-- Brand -->
-                <a href="{% url 'main-page' %}" class="navbar-brand normal w900 padding" style="color: #f7f7f7;">Coffeecalorie</a>
+<!--<body style="background-image:url({% static 'background-image.jpg' %}); background-size: cover; max-width: 100%; position: relative; height: auto;">-->
+<div class="container-fluid" style="position: fixed; z-index: 999;">
+    <div class="row">
+        <div class="col-12 col-lg-12" style="background-color: rgba(109, 97, 93, 0.4)">
+        <header class="navbar navbar-expand-lg navbar-light lottemartdream">
+            <!-- Brand -->
+            <a href="{% url 'main-page' %}" class="navbar-brand normal w900 padding" style="color: #f7f7f7;">Coffeecalorie</a>
 
-                <!-- Button -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                  <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a href="{% url 'coffeeshop:starbucks' %}" class="nav-link w300 dropdown-toggle menu-color" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">스타벅스</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="{% url 'coffeeshop:starbucks' %}" class="dropdown-item menu-color">전체보기</a>
-                            <a href="{% url 'coffeeshop:starbucks-category' category='콜드 브루 커피' %}" class="dropdown-item menu-color">콜드 브루 커피</a>
-                            <a href="{% url 'coffeeshop:starbucks-category' category='브루드 커피' %}" class="dropdown-item">브루드 커피</a>
-                            <a href="{% url 'coffeeshop:starbucks-category' category='에스프레소' %}" class="dropdown-item">에스프레소</a>
-                            <a href="{% url 'coffeeshop:starbucks-category' category='프라푸치노' %}" class="dropdown-item">프라푸치노</a>
-                            <a href="{% url 'coffeeshop:starbucks-category' category='블렌디드' %}" class="dropdown-item">블렌디드</a>
-                            <a href="{% url 'coffeeshop:starbucks-category' category='스타벅스 피지오' %}" class="dropdown-item">스타벅스 피지오</a>
-                            <a href="{% url 'coffeeshop:starbucks-category' category='티(티바나)' %}" class="dropdown-item">티(티바나)</a>
-                            <a href="{% url 'coffeeshop:starbucks-category' category='기타 제조 음료' %}" class="dropdown-item">기타 제조 음료</a>
-                            <a href="{% url 'coffeeshop:starbucks-category' category='스타벅스 주스(병음료)' %}" class="dropdown-item">스타벅스 주스(병음료)</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="{% url 'coffeeshop:twosome' %}" class="nav-link w300 dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">투썸플레이스</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="{% url 'coffeeshop:twosome' %}" class="dropdown-item">전체보기</a>
-                            <a href="{% url 'coffeeshop:twosome-category' category='에스프레소' %}" class="dropdown-item">에스프레소</a>
-                            <a href="{% url 'coffeeshop:twosome-category' category='블렌디드' %}" class="dropdown-item">블렌디드</a>
-                            <a href="{% url 'coffeeshop:twosome-category' category='티(TWG)' %}" class="dropdown-item">티(TWG)</a>
-                            <a href="{% url 'coffeeshop:twosome-category' category='기타' %}" class="dropdown-item">기타</a>
-                        </div>
-                    </li>
-                  </ul>
-                  <form action="{% url 'coffeeshop:calorie-search' %}" class="form-inline my-2 my-lg-0" method="get">
-                      <input type="text" class="form-control mr-sm-2 search_font" placeholder="커피명을 검색해보세요" name="keyword">
-                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                  </form>
-                </div>
-            </header>
-            {% block content %}
-
-            {% endblock %}
+            <!-- Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a href="{% url 'coffeeshop:starbucks' %}" class="nav-link w300 dropdown-toggle menu-color" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">스타벅스</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="{% url 'coffeeshop:starbucks' %}" class="dropdown-item menu-color">전체보기</a>
+                        <a href="{% url 'coffeeshop:starbucks-category' category='콜드 브루 커피' %}" class="dropdown-item menu-color">콜드 브루 커피</a>
+                        <a href="{% url 'coffeeshop:starbucks-category' category='브루드 커피' %}" class="dropdown-item">브루드 커피</a>
+                        <a href="{% url 'coffeeshop:starbucks-category' category='에스프레소' %}" class="dropdown-item">에스프레소</a>
+                        <a href="{% url 'coffeeshop:starbucks-category' category='프라푸치노' %}" class="dropdown-item">프라푸치노</a>
+                        <a href="{% url 'coffeeshop:starbucks-category' category='블렌디드' %}" class="dropdown-item">블렌디드</a>
+                        <a href="{% url 'coffeeshop:starbucks-category' category='스타벅스 피지오' %}" class="dropdown-item">스타벅스 피지오</a>
+                        <a href="{% url 'coffeeshop:starbucks-category' category='티(티바나)' %}" class="dropdown-item">티(티바나)</a>
+                        <a href="{% url 'coffeeshop:starbucks-category' category='기타 제조 음료' %}" class="dropdown-item">기타 제조 음료</a>
+                        <a href="{% url 'coffeeshop:starbucks-category' category='스타벅스 주스(병음료)' %}" class="dropdown-item">스타벅스 주스(병음료)</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="{% url 'coffeeshop:twosome' %}" class="nav-link w300 dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">투썸플레이스</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="{% url 'coffeeshop:twosome' %}" class="dropdown-item">전체보기</a>
+                        <a href="{% url 'coffeeshop:twosome-category' category='에스프레소' %}" class="dropdown-item">에스프레소</a>
+                        <a href="{% url 'coffeeshop:twosome-category' category='블렌디드' %}" class="dropdown-item">블렌디드</a>
+                        <a href="{% url 'coffeeshop:twosome-category' category='티(TWG)' %}" class="dropdown-item">티(TWG)</a>
+                        <a href="{% url 'coffeeshop:twosome-category' category='기타' %}" class="dropdown-item">기타</a>
+                    </div>
+                </li>
+              </ul>
+              <form action="{% url 'coffeeshop:calorie-search' %}" class="form-inline my-2 my-lg-0" method="get">
+                  <input type="text" class="form-control mr-sm-2 search_font" placeholder="커피명을 검색해보세요" name="keyword">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
             </div>
+        </header>
+
+        {% block content %}
+
+        {% endblock %}
         </div>
- </div>
+    </div>
+</div>
+<div class="image-cover">
+    sdfasdfsad
+
+</div>
+
 <script type="text/javascript">
 // get url query string
 
