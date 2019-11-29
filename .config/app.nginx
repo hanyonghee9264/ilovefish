@@ -6,7 +6,7 @@ server {
     listen 80;
     listen 443;
 
-    server_name coffeecalorie.shop www.coffeecalorie.shop api.coffeecalorie.shop *.elasticbeanstalk.com;
+    server_name coffeecalorie.shop www.coffeecalorie.shop api.coffeecalorie.shop *.elasticbeanstalk.com localhost;
 
     charset utf-8;
     client_max_body_size 128M;
