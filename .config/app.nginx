@@ -6,7 +6,7 @@ server {
     listen 80;
     listen 443;
 
-    server_name coffeecalorie.shop www.coffeecalorie.shop api.coffeecalorie.shop *.elasticbeanstalk.com localhost;
+    server_name *.elasticbeanstalk.com localhost;
 
     charset utf-8;
     client_max_body_size 128M;
@@ -27,7 +27,7 @@ server {
     }
 
     # https 리다이렉트
-    if ($http_x_forwarded_proto = 'http') {
-        return 301 https://$host$request_uri;
-    }
+#    if ($http_x_forwarded_proto = 'http') {
+#        return 301 https://$host$request_uri;
+#    }
 }
