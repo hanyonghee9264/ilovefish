@@ -37,10 +37,10 @@ CELERY_TIMEZONE = 'Asia/Seoul' #Celery beat가 스케줄러이기 때문에 시�
 BROKER_HEARTBEAT=0
 
 # Sentry
-sentry_sdk.init(
-    dsn=secrets['SENTRY_DSN'],
-    integrations=[DjangoIntegration()]
-)
+# sentry_sdk.init(
+#     dsn=secrets['SENTRY_DSN'],
+#     integrations=[DjangoIntegration()]
+# )
 
 # Sentry celery
 # sentry_sdk.init(
