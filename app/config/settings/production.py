@@ -13,9 +13,7 @@ secrets = json.load(open(os.path.join(SECRETS_DIR, 'production.json')))
 
 ALLOWED_HOSTS = [
     '.elasticbeanstalk.com',
-    'coffeecalorie.shop',
-    'www.coffeecalorie.shop',
-    'api.coffeecalorie.shop',
+    '.amazonaws.com',
     'localhost',
 ]
 
