@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CoffeeCalories</title>
     <!-- Bootstrap CSS -->
@@ -14,39 +15,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <style>
-    * {
-     margin: 0;
-     padding: 0;
-    }
-    <!--홈페이지 규격-->
-    .container-fluid {
+    body, html {
       width: 100%;
-      padding-right: 15px;
-      padding-left: 15px;
-      margin-right: auto;
-      margin-left: auto;
-    }
-    .container-center {
-      display: inline;
-      text-align: center;
-    }
+      max-height: 100% auto;
+      margin: 0px;
+      padding: 0px;
+      padding-top: 45px;
+      align-items:center;
+      background-size: auto;
+      <!--background-position: center center;-->
+      background-repeat: no-repeat;
 
-    @media (min-width: 768px) {
-    .container {
-     width: 750px;
-      }
     }
-    @media (min-width: 992px) {
-     .container {
-      width: 970px;
-      }
-    }
-    @media (min-width: 1200px) {
-     .container {
-      width: 1170px;
-      }
-    }
-
     ul > li {
      list-style: none;
      padding: 0;
@@ -141,74 +121,166 @@
       font-weight: 100;
       font-size: 90%;
     }
-    .image-cover {
-      position: relative;
-      width: 100%;
-      background-size: cover;
-      background-position: center;
-      background-image: url({% static 'background-image.jpg' %});
-      text-align: center;
-      z-index: 9999;
-    }
+  <!--header 영역-->
+  header {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  background-position: center;
+  text-align: center;
+  color: white;
+}
+
+header .header-content {
+  position: relative;
+  text-align: center;
+  padding: 240px 15px 100px;
+  width: 100%;
+}
+
+header .header-content .header-content-inner h1 {
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+header .header-content .header-content-inner hr {
+  margin: 30px auto;
+}
+
+header .header-content .header-content-inner p {
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  margin-bottom: 50px;
+}
+
+@media all (min-width: 768px) and (max-width: 1024px) {
+  header {
+    min-height: 70%;
+  }
+  header .header-content {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    padding: 0 50px;
+  }
+  header .header-content .header-content-inner {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  header .header-content .header-content-inner p {
+    font-size: 18px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  <!--footer-->
+  header .header-content {
+    position: absolute;
+    top: 0;
+    padding: 0 50px;
+  }
+}
+  .navbar {
+    height: 50px;
+    margin-bottom: 20px;
+  }
+  .navbar-fixed-top {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 999;
+  }
+  .row {
+    top: 0;
+    margin: 0 -20px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  .vertical_center {
+
+  }
     </style>
 </head>
-<!--<body style="background-image:url({% static 'background-image.jpg' %}); background-size: cover; max-width: 100%; position: relative; height: auto;">-->
-<div class="container-fluid" style="position: fixed; z-index: 999;">
-    <div class="row">
-        <div class="col-12 col-lg-12" style="background-color: rgba(109, 97, 93, 0.4)">
-        <header class="navbar navbar-expand-lg navbar-light lottemartdream">
-            <!-- Brand -->
-            <a href="{% url 'main-page' %}" class="navbar-brand normal w900 padding" style="color: #f7f7f7;">Coffeecalorie</a>
+<body style="background-image: url(/static/background-image.jpg)">
+<div class="container">
+<div class="row navbar navbar-fixed-top">
+    <div class="col-12 col-lg-12 mx-auto vertical_center" style="background-color: rgba(109, 97, 93, 0.4)">
+    <div class="navbar navbar-expand-lg navbar-light lottemartdream mx-auto">
+        <!-- Brand -->
+        <a href="{% url 'main-page' %}" class="navbar-brand normal w900" style="color: #f7f7f7;">Coffeecalorie</a>
 
-            <!-- Button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a href="{% url 'coffeeshop:starbucks' %}" class="nav-link w300 dropdown-toggle menu-color" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">스타벅스</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a href="{% url 'coffeeshop:starbucks' %}" class="dropdown-item menu-color">전체보기</a>
-                        <a href="{% url 'coffeeshop:starbucks-category' category='콜드 브루 커피' %}" class="dropdown-item menu-color">콜드 브루 커피</a>
-                        <a href="{% url 'coffeeshop:starbucks-category' category='브루드 커피' %}" class="dropdown-item">브루드 커피</a>
-                        <a href="{% url 'coffeeshop:starbucks-category' category='에스프레소' %}" class="dropdown-item">에스프레소</a>
-                        <a href="{% url 'coffeeshop:starbucks-category' category='프라푸치노' %}" class="dropdown-item">프라푸치노</a>
-                        <a href="{% url 'coffeeshop:starbucks-category' category='블렌디드' %}" class="dropdown-item">블렌디드</a>
-                        <a href="{% url 'coffeeshop:starbucks-category' category='스타벅스 피지오' %}" class="dropdown-item">스타벅스 피지오</a>
-                        <a href="{% url 'coffeeshop:starbucks-category' category='티(티바나)' %}" class="dropdown-item">티(티바나)</a>
-                        <a href="{% url 'coffeeshop:starbucks-category' category='기타 제조 음료' %}" class="dropdown-item">기타 제조 음료</a>
-                        <a href="{% url 'coffeeshop:starbucks-category' category='스타벅스 주스(병음료)' %}" class="dropdown-item">스타벅스 주스(병음료)</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a href="{% url 'coffeeshop:twosome' %}" class="nav-link w300 dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">투썸플레이스</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a href="{% url 'coffeeshop:twosome' %}" class="dropdown-item">전체보기</a>
-                        <a href="{% url 'coffeeshop:twosome-category' category='에스프레소' %}" class="dropdown-item">에스프레소</a>
-                        <a href="{% url 'coffeeshop:twosome-category' category='블렌디드' %}" class="dropdown-item">블렌디드</a>
-                        <a href="{% url 'coffeeshop:twosome-category' category='티(TWG)' %}" class="dropdown-item">티(TWG)</a>
-                        <a href="{% url 'coffeeshop:twosome-category' category='기타' %}" class="dropdown-item">기타</a>
-                    </div>
-                </li>
-              </ul>
-              <form action="{% url 'coffeeshop:calorie-search' %}" class="form-inline my-2 my-lg-0" method="get">
-                  <input type="text" class="form-control mr-sm-2 search_font" placeholder="커피명을 검색해보세요" name="keyword">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-            </div>
-        </header>
-
-        {% block content %}
-
-        {% endblock %}
+        <!-- Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" style="border-color: white;"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a href="{% url 'coffeeshop:starbucks' %}" class="nav-link w300 dropdown-toggle menu-color my-auto" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">스타벅스</a>
+                <div class="dropdown-menu align-middle" aria-labelledby="navbarDropdown">
+                    <a href="{% url 'coffeeshop:starbucks' %}" class="dropdown-item menu-color">전체보기</a>
+                    <a href="{% url 'coffeeshop:starbucks-category' category='콜드 브루 커피' %}" class="dropdown-item menu-color">콜드 브루 커피</a>
+                    <a href="{% url 'coffeeshop:starbucks-category' category='브루드 커피' %}" class="dropdown-item">브루드 커피</a>
+                    <a href="{% url 'coffeeshop:starbucks-category' category='에스프레소' %}" class="dropdown-item">에스프레소</a>
+                    <a href="{% url 'coffeeshop:starbucks-category' category='프라푸치노' %}" class="dropdown-item">프라푸치노</a>
+                    <a href="{% url 'coffeeshop:starbucks-category' category='블렌디드' %}" class="dropdown-item">블렌디드</a>
+                    <a href="{% url 'coffeeshop:starbucks-category' category='스타벅스 피지오' %}" class="dropdown-item">스타벅스 피지오</a>
+                    <a href="{% url 'coffeeshop:starbucks-category' category='티(티바나)' %}" class="dropdown-item">티(티바나)</a>
+                    <a href="{% url 'coffeeshop:starbucks-category' category='기타 제조 음료' %}" class="dropdown-item">기타 제조 음료</a>
+                    <a href="{% url 'coffeeshop:starbucks-category' category='스타벅스 주스(병음료)' %}" class="dropdown-item">스타벅스 주스(병음료)</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="{% url 'coffeeshop:twosome' %}" class="nav-link w300 dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">투썸플레이스</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a href="{% url 'coffeeshop:twosome' %}" class="dropdown-item">전체보기</a>
+                    <a href="{% url 'coffeeshop:twosome-category' category='에스프레소' %}" class="dropdown-item">에스프레소</a>
+                    <a href="{% url 'coffeeshop:twosome-category' category='블렌디드' %}" class="dropdown-item">블렌디드</a>
+                    <a href="{% url 'coffeeshop:twosome-category' category='티(TWG)' %}" class="dropdown-item">티(TWG)</a>
+                    <a href="{% url 'coffeeshop:twosome-category' category='기타' %}" class="dropdown-item">기타</a>
+                </div>
+            </li>
+          </ul>
+          <form action="{% url 'coffeeshop:calorie-search' %}" class="form-inline my-2 my-lg-0" method="get">
+              <input type="text" class="form-control mr-sm-2 search_font" placeholder="커피명을 검색해보세요" name="keyword">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
         </div>
     </div>
-</div>
-<div class="image-cover">
-    sdfasdfsad
+    </div>
 
 </div>
+
+</div>
+{% block main %}
+
+{% endblock %}
+<!--<header class="justify-content-center align-self-center" style="background-image: url(/static/background-image.jpg)">-->
+    <!--<div class="header-content">-->
+      <!--<div class="header-content-inner">-->
+        <!--<h1 style="color: white; font-style: italic; font-weight: 300;">Coffee calories</h1>-->
+        <!--<hr style="border-color: white;">-->
+        <!--<p>-->
+          <!--Starbucks & A Twosome Place calories-->
+        <!--</p>-->
+      <!--</div>-->
+    <!--</div>-->
+<!--</header>-->
+
+{% block content %}
+
+{% endblock %}
+
+
+
 
 <script type="text/javascript">
 // get url query string

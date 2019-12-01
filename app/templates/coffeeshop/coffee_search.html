@@ -3,7 +3,7 @@
 {% block content %}
 
 <div style="padding: 15px 0px 20px 20px;">
-    <h4 class="lottemartdream normal coffee_sub_title">Search Coffee Calories</h4>
+    <h4 class="lottemartdream normal coffee_sub_title" style="color: white;">Search Coffee Calories</h4>
 </div>
 
 {% if keyword  %}
@@ -32,13 +32,13 @@
     {% endfor %}
 </div>
 {% elif non_keyword %}
-    해당 검색어인 커피명 <h7 class="lottemartdream search_coffee">{{ non_keyword }}</h7> 은/는 존재하지 않습니다.
+    <span style="color: white;">해당 검색어인 커피명 <h7 class="lottemartdream search_coffee">{{ non_keyword }}</h7> 은/는 존재하지 않습니다.</span>
     <p>
         <ul>
-            <li>ex) 스타벅스 - 아이스 카푸치노Iced Cappuccino</li>
-            <li>- 자음으로 검색 가능 : 아, 이, 스, ....</li>
-            <li>- 영어로 검색 가능 (단, 스타벅스만 가능) : cappuccino</li>
-            <li>- 알파벳으로 검색가능 (c, a, p ...) : 대소문자 구분 안함</li>
+            <li style="color: white">ex) 스타벅스 - 아이스 카푸치노Iced Cappuccino</li>
+            <li style="color: white">- 자음으로 검색 가능 : 아, 이, 스, ....</li>
+            <li style="color: white">- 영어로 검색 가능 (단, 스타벅스만 가능) : cappuccino</li>
+            <li style="color: white">- 알파벳으로 검색가능 (c, a, p ...) : 대소문자 구분 안함</li>
         </ul>
     </p>
 
