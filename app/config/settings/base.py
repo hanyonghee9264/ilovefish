@@ -28,6 +28,8 @@ STATICFILES_DIRS = [
     os.path.join(ROOT_DIR, '.static/admin'),
     os.path.join(ROOT_DIR, '.static/bootstrap'),
     os.path.join(ROOT_DIR, '.static/images'),
+    os.path.join(ROOT_DIR, '.static/scss'),
+    os.path.join(ROOT_DIR, '.static/js'),
 ]
 
 # Templates
