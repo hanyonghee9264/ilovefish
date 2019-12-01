@@ -5,31 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CoffeeCalories</title>
-     <!--Bootstrap CSS -->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- Bootstrap3 CSS -->
-    <!--<link rel="stylesheet" href="{% static 'css/bootstrap3.css' %}">-->
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <!-- Plugin CSS -->
-    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}" type="text/css">
     <style>
-    body, html {
+    * {
+     margin: 0;
+     padding: 0;
+    }
+    .container {
       width: 100%;
-      max-height: 100% auto;
-      margin: 0px;
-      padding: 0px;
-      padding-top: 45px;
-      align-items:center;
-      background-size: auto;
-      <!--background-position: center center;-->
-      background-repeat: no-repeat;
-
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
     }
     ul > li {
      list-style: none;
@@ -83,6 +77,16 @@
       width: 100%;
       vertical-align: middle;
     }
+    .slideimage {
+      width: 100%;
+      height: 500px;
+      max-height: 100%;
+    }
+    .carousel-inner{
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
     footer > ul > li {
       list-style: none;
       text-align: right;
@@ -120,101 +124,19 @@
     }
 
     # 검색창 글씨 및 placeholder 색상
+   .search_font {
+
+    }
     .search_font::placeholder {
       color: #8b8c8e;
       font-weight: 100;
       font-size: 90%;
     }
-  <!--header 영역-->
-  header {
-  position: relative;
-  width: 100%;
-  min-height: auto;
-  background-position: center;
-  text-align: center;
-  color: white;
-}
 
-header .header-content {
-  position: relative;
-  text-align: center;
-  <!--padding: 150px 15px 100px;-->
-  width: 100%;
-}
-
-header .header-content .header-content-inner h1 {
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-header .header-content .header-content-inner hr {
-  margin: 30px auto;
-}
-
-header .header-content .header-content-inner p {
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 16px;
-  margin-bottom: 50px;
-}
-
-@media all (min-width: 768px) and (max-width: 1024px) {
-  header {
-    min-height: 70%;
-  }
-  header .header-content {
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    padding: 0 50px;
-  }
-  header .header-content .header-content-inner {
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  header .header-content .header-content-inner p {
-    font-size: 18px;
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  <!--footer-->
-  header .header-content {
-    position: absolute;
-    top: 0;
-    padding: 0 50px;
-  }
-}
-  .navbar {
-    height: 50px;
-    margin-bottom: 20px;
-  }
-  .navbar-fixed-top {
-    position: fixed;
-    right: 0;
-    left: 0;
-    z-index: 999;
-  }
-  .row {
-    top: 0;
-    margin: 0 -20px;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-  }
-  .vertical_center {
-
-  }
     </style>
 </head>
 <body>
-<div class="container">
+    <div class="container">
         <div class="row">
             <div class="col-12 col-lg-12">
             <header class="navbar navbar-expand-lg navbar-light lottemartdream" style="background-color:#fff;">
@@ -297,19 +219,5 @@ $(document).ready(function(){
   }
 });
 </script>
-
-<!-- jQuery -->
-<script src="{% static 'jquery/jquery.js' %}"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="{% static 'jquery/bootstrap.min.js' %}"></script>
-
-<!-- Plugin JavaScript -->
-<script src="{% static 'jquery/jquery.easing.min.js' %}"></script>
-<script src="{% static 'jquery/jquery.fittext.js' %}"></script>
-<script src="{% static 'jquery/wow.min.js' %}"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="{% static 'jquery/creative.js' %}"></script>
 </body>
 </html>
