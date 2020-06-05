@@ -2,7 +2,7 @@ awsebcli<3.16
 boto3<1.10
 bs4<0.0.2
 celery<4.3.1
-Django<2.2
+Django<2.3
 django-crontab<0.7.2
 django-celery-beat<1.4.1
 django-celery-results<1.0.5
